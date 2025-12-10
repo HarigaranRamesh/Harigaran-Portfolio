@@ -1,0 +1,125 @@
+/* About.css */
+.about-section {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.about-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .about-container {
+        flex-direction: row;
+    }
+}
+
+.about-image-wrapper {
+    width: 100%;
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .about-image-wrapper {
+        width: 50%;
+    }
+}
+
+.about-img-container {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 450px;
+    margin: 0 auto;
+    border-radius: 1rem;
+    background: linear-gradient(to top right, var(--accent-color), #9333ea);
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.about-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+    mix-blend-mode: overlay;
+    transition: all 0.5s ease;
+}
+
+.about-img:hover {
+    mix-blend-mode: normal;
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.about-frame {
+    position: absolute;
+    top: 1rem;
+    left: -1rem;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--accent-color);
+    border-radius: 1rem;
+    z-index: 0;
+    transition: transform 0.3s ease;
+}
+
+.about-image-wrapper:hover .about-frame {
+    transform: translate(0.5rem, -0.5rem);
+}
+
+.about-content {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .about-content {
+        width: 50%;
+    }
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-primary);
+}
+
+.section-number {
+    color: var(--accent-color);
+    font-family: monospace;
+    font-size: 2rem;
+}
+
+.about-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.about-btn-wrapper {
+    margin-top: 2.5rem;
+}
+
+.btn-outline {
+    padding: 0.75rem 2rem;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    background: transparent;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background: rgba(100, 108, 255, 0.1);
+    box-shadow: 0 0 15px rgba(100, 108, 255, 0.2);
+}
