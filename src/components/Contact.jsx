@@ -27,8 +27,7 @@ const Contact = () => {
         const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
         const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-        console.log("Debug: Firebase Project ID:", import.meta.env.VITE_FIREBASE_PROJECT_ID);
-        console.log("Debug: Auth Domain:", import.meta.env.VITE_FIREBASE_AUTH_DOMAIN);
+
 
         if (!serviceId || !templateId || !publicKey) {
             console.error("EmailJS keys are missing.");
