@@ -72,6 +72,10 @@ const Contact = () => {
                 serviceId,
                 templateId,
                 {
+                    from_name: data.user_name,
+                    to_name: "Harigaran",
+                    from_email: data.user_email,
+                    reply_to: data.user_email,
                     user_name: data.user_name,
                     user_email: data.user_email,
                     user_phone: data.user_phone,
