@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { auth, db } from "../../firebase";
 import { signOut, onAuthStateChanged } from "firebase/auth";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { collection, getDocs, orderBy, query, deleteDoc, doc } from "firebase/firestore";
+import { FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import "../../styles/Admin.css";
@@ -44,6 +45,18 @@ const Dashboard = () => {
         navigate("/login");
     };
 
+    const handleDelete = async (id) => {
+        if (window.confirm("Are you sure you want to delete this message?")) {
+            try {
+                await deleteDoc(doc(db, "messages", id));
+                setMessages(messages.filter((msg) => msg.id !== id));
+            } catch (error) {
+                console.error("Error deleting message:", error);
+                alert("Failed to delete message.");
+            }
+        }
+    };
+
     if (loading) return <div className="admin-container" style={{ textAlign: "center", paddingTop: "5rem" }}>Loading...</div>;
 
     return (
@@ -77,6 +90,7 @@ const Dashboard = () => {
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Message</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,6 +105,25 @@ const Dashboard = () => {
                                         </td>
                                         <td>{msg.user_phone || "-"}</td>
                                         <td style={{ maxWidth: "300px", wordBreak: "break-word" }}>{msg.message}</td>
+                                        <td style={{ textAlign: "center" }}>
+                                            <button
+                                                onClick={() => handleDelete(msg.id)}
+                                                style={{
+                                                    background: "transparent",
+                                                    border: "none",
+                                                    color: "#ef4444",
+                                                    cursor: "pointer",
+                                                    fontSize: "1.1rem",
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                    justifyContent: "center",
+                                                    width: "100%"
+                                                }}
+                                                title="Delete Message"
+                                            >
+                                                <FaTrash />
+                                            </button>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
