@@ -1,6 +1,6 @@
 /* About.css */
 .about-section {
-    background: rgba(0, 0, 0, 0.4);
+    position: relative;
 }
 
 .about-container {
@@ -16,58 +16,109 @@
     }
 }
 
+/* Pro Profile Image Design */
 .about-image-wrapper {
     width: 100%;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (min-width: 768px) {
     .about-image-wrapper {
-        width: 50%;
+        width: 45%;
+        /* Adjusted for better spacing */
     }
 }
 
 .about-img-container {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    max-width: 450px;
-    margin: 0 auto;
-    border-radius: 1rem;
-    background: linear-gradient(to top right, var(--accent-color), #9333ea);
+    width: 300px;
+    height: 300px;
     position: relative;
     z-index: 10;
-    overflow: hidden;
+    margin: 0 auto;
+    border-radius: 20px;
+    /* Glass border effect */
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(100, 255, 218, 0.1);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
+/* Inner image */
 .about-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.8;
-    mix-blend-mode: overlay;
-    transition: all 0.5s ease;
+    border-radius: 12px;
+    /* Slightly less than container */
+    filter: grayscale(100%) contrast(1.1);
+    transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-.about-img:hover {
-    mix-blend-mode: normal;
-    opacity: 1;
-    transform: scale(1.05);
+/* Hover Effects */
+.about-image-wrapper:hover .about-img-container {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5),
+        0 0 0 2px var(--accent-color);
 }
 
+.about-image-wrapper:hover .about-img {
+    filter: grayscale(0%) contrast(1);
+    transform: scale(1.02);
+}
+
+/* The Frame - Now a refined border accent */
 .about-frame {
     position: absolute;
-    top: 1rem;
-    left: -1rem;
-    width: 100%;
-    height: 100%;
+    width: 300px;
+    height: 300px;
     border: 2px solid var(--accent-color);
-    border-radius: 1rem;
-    z-index: 0;
-    transition: transform 0.3s ease;
+    border-radius: 20px;
+    top: 20px;
+    left: 20px;
+    z-index: -1;
+    transition: all 0.3s ease;
+    opacity: 0.6;
 }
 
+/* On hover, the frame moves slightly opposite to image for 3D feel */
 .about-image-wrapper:hover .about-frame {
-    transform: translate(0.5rem, -0.5rem);
+    top: 15px;
+    left: 15px;
+    opacity: 1;
+    box-shadow: 0 0 30px rgba(100, 255, 218, 0.2);
+}
+
+/* Add a sleek glowing dot or decoration */
+.about-image-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 20px;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+    opacity: 0.2;
+    z-index: -2;
+    filter: blur(20px);
+}
+
+@media (max-width: 768px) {
+    .about-img-container {
+        width: 260px;
+        height: 260px;
+    }
+
+    .about-frame {
+        width: 260px;
+        height: 260px;
+        top: 15px;
+        left: 15px;
+    }
 }
 
 .about-content {

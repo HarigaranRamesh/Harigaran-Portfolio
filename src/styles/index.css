@@ -1,16 +1,39 @@
 :root {
+  /* Default Dark Theme */
   --bg-color: #050505;
   --card-bg: rgba(255, 255, 255, 0.05);
   --text-primary: #ffffff;
   --text-secondary: #a0a0a0;
-  --accent-color: #646cff; /* Vite Blue-ish */
+  --accent-color: #646cff;
+  /* Vite Blue-ish */
   --accent-glow: 0 0 20px rgba(100, 108, 255, 0.5);
   --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+  --nav-bg: rgba(5, 5, 5, 0.85);
+  /* Consistent nav bg variable */
+
   --nav-height: 80px;
-  
+
   --font-main: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  
+
   color-scheme: dark;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme='light'] {
+  --bg-color: #ffffff;
+  --card-bg: #f8f9fa;
+  /* Clean card background */
+  --text-primary: #111827;
+  /* Near black for sharp text */
+  --text-secondary: #4b5563;
+  /* Gray-600 */
+  --accent-color: #2563eb;
+  /* Vibrant blue */
+  --accent-glow: 0 0 20px rgba(37, 99, 235, 0.2);
+  --glass-border: 1px solid #e5e7eb;
+  --nav-bg: rgba(255, 255, 255, 0.9);
+
+  color-scheme: light;
 }
 
 * {
@@ -45,13 +68,16 @@ button {
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--bg-color);
 }
+
 ::-webkit-scrollbar-thumb {
   background: #333;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
@@ -74,4 +100,35 @@ button {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+}
+
+/* Global Section Title Style */
+.section-title {
+  text-align: center;
+  margin-bottom: 5rem;
+  font-size: 2.5rem;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.section-title span {
+  background: linear-gradient(to right, var(--accent-color), #64ffda);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+/* Section Number (e.g., 01., 02.) */
+.section-number {
+  color: var(--accent-color);
+  font-family: monospace;
+  font-size: 2rem;
+  margin-right: 0.5rem;
+  background: none !important;
+  /* Override gradient for number if desired, or keep it */
+  -webkit-text-fill-color: var(--accent-color) !important;
 }

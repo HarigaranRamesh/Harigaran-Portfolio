@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaBars, FaTimes, FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { FaBars, FaTimes, FaGithub, FaLinkedin, FaEnvelope, FaSun, FaMoon } from "react-icons/fa";
 import "../styles/Navbar.css";
 
 const navLinks = [
@@ -15,6 +15,7 @@ const navLinks = [
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
 
     useEffect(() => {
         const handleScroll = () => {
@@ -23,6 +24,15 @@ const Navbar = () => {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    useEffect(() => {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+    };
 
     return (
         <motion.nav
@@ -51,6 +61,15 @@ const Navbar = () => {
                         ))}
                     </ul>
                     <div className="nav-socials">
+                        <button
+                            onClick={toggleTheme}
+                            className="social-link"
+                            style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '1.2rem', padding: 0 }}
+                            aria-label="Toggle Theme"
+                        >
+                            {theme === "dark" ? <FaSun className="text-yellow-400" /> : <FaMoon className="text-blue-600" />}
+                        </button>
+                        <div style={{ width: '1px', height: '24px', background: 'var(--text-secondary)', opacity: 0.3, margin: '0 0.5rem' }}></div>
                         <SocialLink href="https://github.com/HarigaranRamesh" icon={<FaGithub />} />
                         <SocialLink href="https://www.linkedin.com/in/harigaran-ramesh-554887224" icon={<FaLinkedin />} />
                         <SocialLink href="mailto:harigaran925@gmail.com" icon={<FaEnvelope />} />
@@ -58,12 +77,21 @@ const Navbar = () => {
                 </div>
 
                 {/* Mobile Toggle */}
-                <button
-                    className="nav-toggle"
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                >
-                    {mobileMenuOpen ? <FaTimes /> : <FaBars />}
-                </button>
+                <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+                    <button
+                        onClick={toggleTheme}
+                        className="nav-toggle"
+                        style={{ fontSize: "1.2rem", marginRight: "0.5rem" }}
+                    >
+                        {theme === "dark" ? <FaSun /> : <FaMoon />}
+                    </button>
+                    <button
+                        className="nav-toggle"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    >
+                        {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+                    </button>
+                </div>
             </div>
 
             {/* Mobile Menu */}

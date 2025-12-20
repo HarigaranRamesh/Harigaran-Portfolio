@@ -40,7 +40,8 @@ const About = () => {
                         className="about-content"
                     >
                         <h2 className="section-title">
-                            <span className="section-number">01.</span> About Me
+                            <span className="section-number">01.</span>
+                            <span>About Me</span>
                         </h2>
                         <div className="about-text">
                             <p>

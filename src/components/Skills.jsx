@@ -18,7 +18,8 @@ const Skills = () => {
                         animate={inView ? { opacity: 1, y: 0 } : {}}
                         className="section-title"
                     >
-                        <span className="section-number">03.</span> Tech Stack
+                        <span className="section-number">03.</span>
+                        <span>Tech Stack</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0 }}

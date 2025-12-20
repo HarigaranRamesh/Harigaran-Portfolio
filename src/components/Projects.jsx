@@ -34,7 +34,8 @@ const Projects = () => {
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     className="section-title projects-header"
                 >
-                    <span className="section-number">02.</span> Some Things I've Built
+                    <span className="section-number">02.</span>
+                    <span>Some Things I've Built</span>
                 </motion.h2>
 
                 <motion.div

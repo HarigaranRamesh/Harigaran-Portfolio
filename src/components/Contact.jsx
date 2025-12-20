@@ -136,7 +136,9 @@ const Contact = () => {
                     className="contact-header"
                 >
                     <span className="contact-subtitle">Get In Touch</span>
-                    <h2 className="contact-title">Let's Work Together</h2>
+                    <h2 className="section-title">
+                        <span>Let's Work Together</span>
+                    </h2>
                     <p className="contact-desc">
                         I'm currently available for freelance projects and open to new opportunities.
                         If you have a project in mind or just want to say hi, send me a message!

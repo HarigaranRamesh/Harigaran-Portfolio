@@ -19,11 +19,12 @@
 
 .project-card {
     position: relative;
-    background: #111;
+    background: var(--card-bg);
     border-radius: 0.75rem;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: border-color 0.3s ease, transform 0.3s ease;
+    border: var(--glass-border);
+    transition: border-color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .project-card:hover {
@@ -121,7 +122,8 @@
     font-family: monospace;
     padding: 0.25rem 0.75rem;
     border-radius: 100px;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--bg-color);
     color: var(--accent-color);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--accent-color);
+    opacity: 0.8;
 }

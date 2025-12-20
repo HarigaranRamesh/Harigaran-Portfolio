@@ -70,7 +70,7 @@
 }
 
 .contact-info-card {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--card-bg);
     backdrop-filter: blur(10px);
     border: var(--glass-border);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -111,14 +111,14 @@
 }
 
 .contact-link:hover {
-    color: white;
+    color: var(--accent-color);
 }
 
 .contact-quote {
     padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--card-bg);
     border-radius: 0.75rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: var(--glass-border);
 }
 
 .quote-text {
@@ -155,11 +155,11 @@
 
 .form-input {
     width: 100%;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--card-bg);
+    border: var(--glass-border);
     border-radius: 0.5rem;
     padding: 0.75rem 1rem;
-    color: white;
+    color: var(--text-primary);
     font-family: inherit;
     font-size: 1rem;
     transition: all 0.3s ease;
@@ -172,7 +172,7 @@
 }
 
 .form-input::placeholder {
-    color: rgba(255, 255, 255, 0.3);
+    color: var(--text-secondary);
 }
 
 textarea.form-input {

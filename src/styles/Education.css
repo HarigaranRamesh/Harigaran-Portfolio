@@ -1,66 +1,196 @@
+/* Reuse the powerful timeline styles from Experience.css but tailored for Education */
+
 .education-section {
     position: relative;
-    background-color: var(--bg-color);
     padding: 100px 0;
     overflow: hidden;
+    /* Clean background using theme variable */
+    background: var(--bg-color);
 }
 
 .education-container {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
+    position: relative;
 }
 
-.education-title {
-    font-size: clamp(2rem, 5vw, 2.5rem);
-    font-weight: 700;
-    margin-bottom: 3rem;
-    color: var(--text-color);
+.section-title {
     text-align: center;
-}
-
-.education-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.education-card {
-    background: var(--card-bg);
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
-    transition: transform 0.3s ease;
-    border: 1px solid var(--border-color);
-}
-
-.education-card:hover {
-    transform: translateY(-5px);
-}
-
-.edu-year {
-    color: var(--accent-color);
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
+    margin-bottom: 5rem;
+    font-size: 2.5rem;
+    position: relative;
     display: inline-block;
+    width: 100%;
 }
 
-.edu-degree {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--heading-color);
+.section-title span {
+    background: linear-gradient(to right, var(--accent-color), #64ffda);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+/* Timeline Components - duplicated from Experience.css for independence, 
+   but ideally should be in a global CSS if refactoring completely. 
+   Keeping separate for safety to not break existing structure. */
+
+.timeline {
+    position: relative;
+    padding: 2rem 0;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: rgba(100, 255, 218, 0.2);
+    top: 0;
+    border-radius: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 4rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.timeline-item.left {
+    justify-content: flex-start;
+    padding-right: 50%;
+}
+
+.timeline-item.right {
+    justify-content: flex-end;
+    padding-left: 50%;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    background: var(--bg-color);
+    border: 3px solid var(--accent-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    /* Slightly bigger icon for grad cap */
+    box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
+    transition: all 0.3s ease;
+}
+
+.timeline-item:hover .timeline-marker {
+    background: var(--accent-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 25px rgba(100, 255, 218, 0.6);
+    transform: translateX(-50%) scale(1.1);
+}
+
+.timeline-content {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: var(--glass-border);
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.timeline-item.left .timeline-content {
+    margin-right: 2rem;
+}
+
+.timeline-item.right .timeline-content {
+    margin-left: 2rem;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 30px -15px rgba(2, 12, 27, 0.7);
+    border-color: var(--accent-color);
+}
+
+/* Typography unique to Education */
+.edu-header {
     margin-bottom: 0.5rem;
 }
 
+.edu-degree {
+    font-size: 1.35rem;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+}
+
 .edu-institution {
-    font-size: 1rem;
-    color: var(--text-color-secondary);
-    margin-bottom: 1rem;
+    color: var(--accent-color);
+    font-size: 1.1rem;
+    font-family: var(--font-mono);
+    font-weight: 500;
+}
+
+.edu-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
 }
 
 .edu-desc {
-    color: var(--text-color);
-    font-size: 0.95rem;
+    color: var(--text-secondary);
     line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .timeline-line {
+        left: 20px;
+        transform: translateX(0);
+    }
+
+    .timeline-marker {
+        left: 20px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .timeline-item.left,
+    .timeline-item.right {
+        justify-content: flex-start;
+        padding: 0;
+        margin-left: 60px;
+        width: calc(100% - 60px);
+    }
+
+    .timeline-item.left .timeline-content,
+    .timeline-item.right .timeline-content {
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
 }

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { FaBriefcase, FaCalendarAlt } from "react-icons/fa";
 import { experience } from "../data/experience";
 import "../styles/Experience.css";
 
@@ -9,40 +10,63 @@ const Experience = () => {
         threshold: 0.1,
     });
 
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.3,
+            },
+        },
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+    };
+
     return (
         <section id="experience" className="section experience-section">
             <div className="container experience-container">
                 <motion.div
                     ref={ref}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.8 }}
+                    initial="hidden"
+                    animate={inView ? "visible" : "hidden"}
+                    variants={containerVariants}
                 >
-                    <h2 className="section-title" style={{ textAlign: "center", marginBottom: "3rem" }}>
-                        Experience
-                    </h2>
+                    <motion.h2 variants={itemVariants} className="section-title">
+                        <span>Work Experience</span>
+                    </motion.h2>
 
-                    <div className="experience-list">
+                    <div className="timeline">
+                        <div className="timeline-line"></div>
+
                         {experience.map((exp, index) => (
                             <motion.div
                                 key={exp.id}
-                                initial={{ opacity: 0, x: -30 }}
-                                animate={inView ? { opacity: 1, x: 0 } : {}}
-                                transition={{ duration: 0.6, delay: index * 0.2 }}
-                                className="experience-card"
+                                variants={itemVariants}
+                                className={`timeline-item ${index % 2 === 0 ? "left" : "right"}`}
                             >
-                                <div className="exp-header">
-                                    <h3 className="exp-role">{exp.role}</h3>
-                                    <span className="exp-company">@ {exp.company}</span>
+                                <div className="timeline-marker">
+                                    <FaBriefcase />
                                 </div>
-                                <span className="exp-duration">{exp.duration}</span>
-                                <p className="exp-desc">{exp.description}</p>
-                                <div className="exp-tech">
-                                    {exp.tech.map((tech, i) => (
-                                        <span key={i} className="tech-tag">
-                                            {tech}
-                                        </span>
-                                    ))}
+                                <div className="timeline-content">
+                                    <div className="exp-header">
+                                        <h3 className="exp-role">{exp.role}</h3>
+                                        <h4 className="exp-company">{exp.company}</h4>
+                                    </div>
+                                    <div className="exp-meta">
+                                        <FaCalendarAlt className="meta-icon" />
+                                        <span>{exp.duration}</span>
+                                    </div>
+                                    <p className="exp-desc">{exp.description}</p>
+                                    <div className="exp-tech">
+                                        {exp.tech.map((tech, i) => (
+                                            <span key={i} className="tech-tag">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
                                 </div>
                             </motion.div>
                         ))}
