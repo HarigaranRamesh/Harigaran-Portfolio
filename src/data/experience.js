@@ -11,7 +11,7 @@ export const experience = [
         id: 2,
         role: "Frontend developer intern",
         company: "Stuvels Software Solutions ",
-        duration: "Jun 2025 - Mar 2025",
+        duration: "Jan 2025 - Mar 2025",
         description: "Built custom websites for personal projects. Managed hosting and deployment on platforms like Netlify and Vercel.",
         tech: ["HTML/CSS", "JavaScript", "React"]
     }
