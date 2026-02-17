@@ -1,166 +1,194 @@
-/* Bento Grid Journey Design */
-.journey-section {
-    padding: 100px 0;
+/* Experience Section */
+.experience-section {
     position: relative;
-}
-
-.bento-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    margin-top: 4rem;
-}
-
-@media (min-width: 992px) {
-    .bento-grid {
-        grid-template-columns: 1.2fr 1fr;
-        align-items: start;
-    }
-}
-
-.bento-column {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.bento-card {
-    position: relative;
-    background: var(--card-bg);
-    border: var(--glass-border);
-    backdrop-filter: blur(10px);
-    border-radius: 2rem;
-    padding: 2.5rem;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.bento-spotlight {
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 4rem auto 0;
+}
+
+.timeline-line {
     position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: linear-gradient(to bottom,
+            transparent,
+            rgba(100, 255, 218, 0.5) 15%,
+            rgba(100, 255, 218, 0.5) 85%,
+            transparent);
+    transform: translateX(-50%);
 }
 
-.bento-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    border-color: var(--accent-color);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
-.bento-card-header {
+.timeline-item {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
+    position: relative;
+    width: 100%;
 }
 
-.bento-icon-box {
-    width: 3.5rem;
-    height: 3.5rem;
-    background: rgba(100, 255, 218, 0.1);
-    color: var(--accent-color);
-    border-radius: 1rem;
+.timeline-item.left {
+    flex-direction: row;
+}
+
+.timeline-item.right {
+    flex-direction: row-reverse;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    background: var(--bg-color);
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--accent-color);
+    font-size: 1.25rem;
+    transform: translateX(-50%);
+    z-index: 10;
+    box-shadow: 0 0 20px rgba(100, 255, 218, 0.2);
+    transition: all 0.3s ease;
+}
+
+.timeline-item:hover .timeline-marker {
+    background: var(--accent-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 30px rgba(100, 255, 218, 0.4);
+}
+
+.timeline-content {
+    width: 42%;
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: var(--glass-border);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.timeline-item.left .timeline-content {
+    text-align: right;
+}
+
+.timeline-item.right .timeline-content {
+    text-align: left;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.exp-role {
     font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
 }
 
-.bento-icon-box.education {
-    background: rgba(147, 51, 234, 0.1);
-    color: #a855f7;
+.exp-company {
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
 }
 
-.bento-meta {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.5rem;
-}
-
-.bento-duration,
-.bento-location {
-    font-size: 0.8rem;
-    font-family: monospace;
-    color: var(--text-secondary);
+.exp-meta {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    opacity: 0.7;
-}
-
-.bento-title {
-    font-size: 1.8rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-    color: var(--text-primary);
-}
-
-.bento-subtitle {
-    font-size: 1.1rem;
-    color: var(--accent-color);
-    margin-bottom: 1.5rem;
-    font-weight: 600;
-}
-
-.bento-desc {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
     color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 2rem;
-    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
 }
 
-.bento-tech {
+.timeline-item.left .exp-meta {
+    justify-content: flex-end;
+}
+
+.meta-icon {
+    font-size: 0.9rem;
+}
+
+.exp-desc {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.exp-tech {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
 }
 
-.bento-tag {
-    font-size: 0.75rem;
-    padding: 0.4rem 1rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 50px;
-    color: var(--text-secondary);
-    transition: all 0.3s ease;
+.timeline-item.left .exp-tech {
+    justify-content: flex-end;
 }
 
-.bento-card:hover .bento-tag {
-    background: rgba(100, 255, 218, 0.1);
+.tech-tag {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
     color: var(--accent-color);
-    border-color: var(--accent-color);
+    background: var(--bg-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    border: 1px solid var(--accent-color);
+    transition: all 0.2s ease;
 }
 
-.bento-glass-shine {
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(to right,
-            transparent,
-            rgba(255, 255, 255, 0.05),
-            transparent);
-    transform: skewX(-25deg);
-    transition: 0.75s;
+.tech-tag:hover {
+    background: rgba(100, 255, 218, 0.1);
+    transform: translateY(-1px);
 }
 
-.bento-card:hover .bento-glass-shine {
-    left: 150%;
-}
-
-@media (max-width: 480px) {
-    .bento-card {
-        padding: 1.5rem;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .timeline-line {
+        left: 20px;
+        transform: translateX(0);
     }
 
-    .bento-title {
-        font-size: 1.4rem;
+    .timeline-marker {
+        left: 20px;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
     }
 
-    .journey-section {
-        padding: 60px 0;
+    .timeline-item.left,
+    .timeline-item.right {
+        justify-content: flex-start;
+        padding: 0;
+        margin-left: 60px;
+        width: calc(100% - 60px);
+    }
+
+    .timeline-item.left .timeline-content,
+    .timeline-item.right .timeline-content {
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 3rem;
     }
 }

@@ -12,7 +12,8 @@ import ContactCTA from "./components/common/ContactCTA";
 const About = lazy(() => import('./components/About'));
 const Projects = lazy(() => import('./components/Projects'));
 const Skills = lazy(() => import('./components/Skills'));
-const ExperienceEducation = lazy(() => import('./components/ExperienceEducation'));
+const Experience = lazy(() => import('./components/Experience'));
+const Education = lazy(() => import('./components/Education'));
 const Methodology = lazy(() => import('./components/Methodology'));
 const Testimonials = lazy(() => import('./components/Testimonials'));
 const Contact = lazy(() => import('./components/Contact'));
@@ -72,7 +73,8 @@ function App() {
                     <About />
                     <Projects />
                     <Skills />
-                    <ExperienceEducation />
+                    <Experience />
+                    <Education />
                     <Methodology />
                     <Testimonials />
                     <Contact />
