@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes, FaGithub, FaLinkedin, FaEnvelope, FaSun, FaMoon } from "react-icons/fa";
+import Magnetic from "./common/Magnetic";
 import "../styles/Navbar.css";
 
 const navLinks = [
@@ -19,7 +20,7 @@ const Navbar = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
+            setIsScrolled(window.scrollY > 20);
         };
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
@@ -42,34 +43,41 @@ const Navbar = () => {
             className={`navbar ${isScrolled ? "scrolled" : ""}`}
         >
             <div className="nav-container">
-                <a href="#" className="nav-logo">
-                    PORTFOLIO<span>.</span>
-                </a>
+                <div className="nav-left">
+                    <Magnetic>
+                        <a href="#" className="nav-logo">
+                            HARIGARAN<span>.</span>
+                        </a>
+                    </Magnetic>
+                    <div className="status-indicator">
+                        <span className="status-dot"></span>
+                        <span className="status-text">Available for hire</span>
+                    </div>
+                </div>
 
                 {/* Desktop Menu */}
                 <div className="nav-menu">
                     <ul className="nav-links">
                         {navLinks.map((link) => (
                             <li key={link.title}>
-                                <a
-                                    href={link.href}
-                                    className="nav-link"
-                                >
+                                <a href={link.href} className="nav-link">
                                     {link.title}
                                 </a>
                             </li>
                         ))}
                     </ul>
                     <div className="nav-socials">
-                        <button
-                            onClick={toggleTheme}
-                            className="social-link"
-                            style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '1.2rem', padding: 0 }}
-                            aria-label="Toggle Theme"
-                        >
-                            {theme === "dark" ? <FaSun className="text-yellow-400" /> : <FaMoon className="text-blue-600" />}
-                        </button>
-                        <div style={{ width: '1px', height: '24px', background: 'var(--text-secondary)', opacity: 0.3, margin: '0 0.5rem' }}></div>
+                        <Magnetic>
+                            <button
+                                onClick={toggleTheme}
+                                className="social-link"
+                                style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '1.2rem', padding: '0.5rem' }}
+                                aria-label="Toggle Theme"
+                            >
+                                {theme === "dark" ? <FaSun className="text-yellow-400" /> : <FaMoon className="text-blue-600" />}
+                            </button>
+                        </Magnetic>
+                        <div className="nav-divider"></div>
                         <SocialLink href="https://github.com/HarigaranRamesh" icon={<FaGithub />} />
                         <SocialLink href="https://www.linkedin.com/in/harigaran-ramesh-554887224" icon={<FaLinkedin />} />
                         <SocialLink href="mailto:harigaran925@gmail.com" icon={<FaEnvelope />} />
@@ -77,14 +85,12 @@ const Navbar = () => {
                 </div>
 
                 {/* Mobile Toggle */}
-                <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
-                    <button
-                        onClick={toggleTheme}
-                        className="nav-toggle"
-                        style={{ fontSize: "1.2rem", marginRight: "0.5rem" }}
-                    >
-                        {theme === "dark" ? <FaSun /> : <FaMoon />}
-                    </button>
+                <div className="mobile-toggle-wrapper">
+                    <Magnetic>
+                        <button onClick={toggleTheme} className="nav-toggle">
+                            {theme === "dark" ? <FaSun /> : <FaMoon />}
+                        </button>
+                    </Magnetic>
                     <button
                         className="nav-toggle"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -97,31 +103,72 @@ const Navbar = () => {
             {/* Mobile Menu */}
             <AnimatePresence>
                 {mobileMenuOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "100vh" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className={`mobile-menu ${mobileMenuOpen ? "open" : ""}`}
-                    >
-                        <ul>
-                            {navLinks.map((link) => (
-                                <li key={link.title}>
-                                    <a
-                                        href={link.href}
+                    <>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="mobile-menu-overlay"
+                        />
+                        <motion.div
+                            initial={{ x: "100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "100%" }}
+                            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                            className="mobile-menu"
+                        >
+                            <div className="mobile-menu-content">
+                                <div className="mobile-menu-header">
+                                    <div className="status-indicator mobile">
+                                        <span className="status-dot"></span>
+                                        <span className="status-text">Living the Dream</span>
+                                    </div>
+                                    <button
+                                        className="mobile-close-btn"
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className="mobile-nav-link"
+                                        aria-label="Close Menu"
                                     >
-                                        {link.title}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                        <div className="mobile-socials">
-                            <SocialLink href="https://github.com/HarigaranRamesh" icon={<FaGithub />} />
-                            <SocialLink href="https://www.linkedin.com/in/harigaran-ramesh-554887224" icon={<FaLinkedin />} />
-                            <SocialLink href="mailto:harigaran925@gmail.com" icon={<FaEnvelope />} />
-                        </div>
-                    </motion.div>
+                                        <FaTimes />
+                                    </button>
+                                </div>
+
+                                <ul className="mobile-nav-links">
+                                    {navLinks.map((link, i) => (
+                                        <motion.li
+                                            key={link.title}
+                                            initial={{ opacity: 0, x: 20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: 0.1 + i * 0.1 }}
+                                        >
+                                            <a
+                                                href={link.href}
+                                                onClick={() => setMobileMenuOpen(false)}
+                                                className="mobile-nav-link"
+                                            >
+                                                <span className="mobile-link-num">0{i + 1}.</span>
+                                                {link.title}
+                                            </a>
+                                        </motion.li>
+                                    ))}
+                                </ul>
+
+                                <div className="mobile-menu-footer">
+                                    <p className="mobile-menu-label">Connect with me</p>
+                                    <div className="mobile-socials">
+                                        <SocialLink href="https://github.com/HarigaranRamesh" icon={<FaGithub />} />
+                                        <SocialLink href="https://www.linkedin.com/in/harigaran-ramesh-554887224" icon={<FaLinkedin />} />
+                                        <SocialLink href="mailto:harigaran925@gmail.com" icon={<FaEnvelope />} />
+                                    </div>
+                                    <div className="mobile-theme-toggle">
+                                        <button onClick={toggleTheme} className="theme-pill">
+                                            {theme === "dark" ? <><FaSun /> Light Mode</> : <><FaMoon /> Dark Mode</>}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </>
                 )}
             </AnimatePresence>
         </motion.nav>
@@ -129,14 +176,17 @@ const Navbar = () => {
 };
 
 const SocialLink = ({ href, icon }) => (
-    <a
-        href={href}
-        target="_blank"
-        rel="noreferrer"
-        className="social-link"
-    >
-        {icon}
-    </a>
+    <Magnetic>
+        <a
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            className="social-link"
+            style={{ padding: '0.5rem', display: 'flex' }}
+        >
+            {icon}
+        </a>
+    </Magnetic>
 );
 
 export default Navbar;

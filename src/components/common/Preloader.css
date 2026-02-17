@@ -1,0 +1,76 @@
+/* Preloader.css */
+.preloader-overlay {
+    position: fixed;
+    inset: 0;
+    background: #050505;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    z-index: 10;
+}
+
+.preloader-logo {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    color: white;
+}
+
+.preloader-logo span {
+    color: var(--accent-color);
+}
+
+.preloader-counter-wrapper {
+    width: 200px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.preloader-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--accent-color);
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+.preloader-number {
+    position: absolute;
+    top: 10px;
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.preloader-tags {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: white;
+    margin-top: 2rem;
+}
+
+.preloader-curve {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: calc(100% + 300px);
+    fill: #050505;
+    pointer-events: none;
+}

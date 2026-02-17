@@ -4,6 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { FaPaperPlane, FaEnvelope, FaCheck, FaExclamationCircle } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import Magnetic from "./common/Magnetic";
 import { db } from "../firebase";
 import "../styles/Contact.css";
 
@@ -183,27 +184,29 @@ const Contact = () => {
                         className="contact-form"
                         onSubmit={sendEmail}
                     >
-                        <div className="form-group">
-                            <label htmlFor="name" className="form-label">Name</label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="user_name"
-                                required
-                                className="form-input"
-                                placeholder="John Doe"
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="email" className="form-label">Email</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="user_email"
-                                required
-                                className="form-input"
-                                placeholder="john@example.com"
-                            />
+                        <div className="form-grid">
+                            <div className="form-group">
+                                <label htmlFor="name" className="form-label">Name</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="user_name"
+                                    required
+                                    className="form-input"
+                                    placeholder="John Doe"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="email" className="form-label">Email</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="user_email"
+                                    required
+                                    className="form-input"
+                                    placeholder="john@example.com"
+                                />
+                            </div>
                         </div>
                         <div className="form-group">
                             <label htmlFor="phone" className="form-label">Phone Number</label>
@@ -226,20 +229,25 @@ const Contact = () => {
                                 placeholder="Your message here..."
                             ></textarea>
                         </div>
-                        <button
-                            className={`submit-btn ${status === 'success' ? 'bg-green-600 hover:bg-green-700' : ''} ${status === 'error' ? 'bg-red-600 hover:bg-red-700' : ''}`}
-                            disabled={loading}
-                        >
-                            {loading ? (
-                                <span className="animate-pulse">Sending...</span>
-                            ) : status === 'success' ? (
-                                <>Sent! <FaCheck /></>
-                            ) : status === 'error' ? (
-                                <>Error: {errorMessage || "Failed"} <FaExclamationCircle /></>
-                            ) : (
-                                <>Send Message <FaPaperPlane /></>
-                            )}
-                        </button>
+
+                        <div className="form-footer">
+                            <Magnetic>
+                                <button
+                                    className={`submit-btn ${status === 'success' ? 'success' : ''} ${status === 'error' ? 'error' : ''}`}
+                                    disabled={loading}
+                                >
+                                    {loading ? (
+                                        <span className="loading-text">Sending...</span>
+                                    ) : status === 'success' ? (
+                                        <>Message Sent <FaCheck /></>
+                                    ) : status === 'error' ? (
+                                        <>Error Occurred <FaExclamationCircle /></>
+                                    ) : (
+                                        <>Send Message <FaPaperPlane /></>
+                                    )}
+                                </button>
+                            </Magnetic>
+                        </div>
                     </motion.form>
                 </div>
             </div>

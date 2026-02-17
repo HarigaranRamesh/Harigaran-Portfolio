@@ -1,0 +1,108 @@
+/* Marquee.css */
+.marquee-container {
+    width: 100%;
+    padding: 4rem 0;
+    background: transparent;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.marquee-content {
+    display: flex;
+    width: fit-content;
+}
+
+.marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    padding-right: 4rem;
+    animation: scroll 40s linear infinite;
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    white-space: nowrap;
+}
+
+.marquee-icon {
+    font-size: 2rem;
+    color: var(--text-secondary);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.marquee-text {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+}
+
+.marquee-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    opacity: 0.3;
+}
+
+.marquee-item:hover .marquee-icon {
+    color: var(--accent-color);
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.marquee-item:hover .marquee-text {
+    -webkit-text-stroke: 1px var(--accent-color);
+    color: var(--accent-color);
+    opacity: 0.8;
+}
+
+.marquee-fade-left,
+.marquee-fade-right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 150px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.marquee-fade-left {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-color), transparent);
+}
+
+.marquee-fade-right {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-color), transparent);
+}
+
+@media (max-width: 768px) {
+    .marquee-text {
+        font-size: 2rem;
+    }
+
+    .marquee-track {
+        gap: 2rem;
+        padding-right: 2rem;
+    }
+}

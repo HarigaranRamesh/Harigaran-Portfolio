@@ -25,6 +25,7 @@
     filter: blur(100px);
     opacity: 0.2;
     animation: float 10s infinite ease-in-out;
+    will-change: transform;
 }
 
 .orb-1 {
@@ -79,27 +80,37 @@
 }
 
 .hero-title {
-    font-size: 5rem;
+    font-size: 6.5rem;
     font-weight: 900;
-    line-height: 1.1;
-    letter-spacing: -0.04em;
-    margin-bottom: 1.5rem;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    margin-bottom: 2rem;
     color: var(--text-primary);
 }
 
-.hero-title span {
-    background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+.highlight-text {
+    background: linear-gradient(135deg, var(--accent-color) 0%, #64ffda 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(100, 255, 218, 0.2));
 }
 
 .hero-description {
-    font-size: 1.25rem;
-    line-height: 1.6;
+    font-size: 1.1rem;
+    line-height: 1.8;
     color: var(--text-secondary);
-    max-width: 600px;
+    max-width: 650px;
     margin-bottom: 3rem;
+}
+
+.hero-marquee-wrapper {
+    position: absolute;
+    bottom: 120px;
+    left: 0;
+    width: 100%;
+    opacity: 0.6;
+    pointer-events: none;
 }
 
 .hero-buttons {
@@ -187,5 +198,20 @@
         flex-direction: column;
         width: 100%;
         max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-greeting {
+        font-size: 0.8rem;
+        letter-spacing: 0.2em;
+    }
+
+    .btn {
+        padding: 0.8rem 2rem;
     }
 }
