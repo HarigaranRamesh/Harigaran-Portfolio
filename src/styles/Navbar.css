@@ -12,9 +12,9 @@
 
 .navbar.scrolled {
     padding: 1.25rem 0;
-    background: rgba(5, 5, 5, 0.75);
+    background: var(--nav-bg);
     backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: var(--glass-border);
 }
 
 .nav-container {
@@ -44,8 +44,8 @@
 }
 
 .status-indicator.mobile {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
+    background: var(--card-bg);
+    border-color: var(--glass-border);
 }
 
 .status-dot {
@@ -195,11 +195,11 @@
     width: 85%;
     max-width: 400px;
     height: 100vh;
-    background: rgba(5, 5, 5, 0.95);
+    background: var(--bg-color);
     backdrop-filter: blur(40px) saturate(150%);
     z-index: 1100;
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: -10px 0 50px rgba(0, 0, 0, 0.5);
+    border-left: var(--glass-border);
+    box-shadow: -10px 0 50px rgba(0, 0, 0, 0.1);
 }
 
 .mobile-menu-content {
@@ -217,8 +217,8 @@
 }
 
 .mobile-close-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--card-bg);
+    border: var(--glass-border);
     color: var(--text-primary);
     width: 3rem;
     height: 3rem;
@@ -298,8 +298,8 @@
     width: 100%;
     padding: 1rem;
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--card-bg);
+    border: var(--glass-border);
     color: var(--text-primary);
     font-weight: 600;
     display: flex;
