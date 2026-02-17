@@ -6,7 +6,6 @@ import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Preloader from "./components/common/Preloader";
-import ContactCTA from "./components/common/ContactCTA";
 
 // Lazy components
 const About = lazy(() => import('./components/About'));
@@ -80,7 +79,6 @@ function App() {
                     <Contact />
                     <Footer />
                     <ScrollToTop />
-                    <ContactCTA />
                   </Suspense>
                 </>
               } />

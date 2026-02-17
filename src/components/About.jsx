@@ -23,7 +23,7 @@ const About = () => {
     const rotate = useTransform(scrollYProgress, [0, 1], [0, 45]);
 
     const stats = [
-        { label: "Years Experience", value: "1+" },
+        { label: "Experience", value: "6 Months" },
         { label: "Projects Completed", value: "3+" },
         { label: "Technologies", value: "12+" },
     ];
