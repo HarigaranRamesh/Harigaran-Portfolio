@@ -101,7 +101,7 @@ const About = () => {
                             <div className="about-btn-wrapper">
                                 <Magnetic>
                                     <a
-                                        href="https://docs.google.com/document/d/1ey9q6mefOEgTr5BXzwukyigsFVrX5mKkDZC710_g-Tg/edit?usp=drive_link"
+                                        href="https://drive.google.com/file/d/1KjIp8G4gvVFprX7KXir4tW6XF7xmdnZB/view?usp=share_link"
                                         target="_blank"
                                         rel="noreferrer"
                                         className="btn-outline modern-btn"
