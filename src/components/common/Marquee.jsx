@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import {
-    SiReact, SiAngular, SiNodedotjs, SiExpress, SiMongodb,
+    SiReact, SiNextdotjs, SiNodedotjs, SiExpress, SiMongodb,
     SiPostgresql, SiTypescript, SiJavascript, SiFramer,
     SiTailwindcss, SiDocker, SiGit
 } from "react-icons/si";
@@ -8,14 +8,13 @@ import "../../styles/Marquee.css";
 
 const techStack = [
     { icon: <SiReact />, name: "React" },
-    { icon: <SiAngular />, name: "Angular" },
+    { icon: <SiNextdotjs />, name: "Next.js" },
     { icon: <SiNodedotjs />, name: "Node.js" },
     { icon: <SiExpress />, name: "Express" },
     { icon: <SiMongodb />, name: "MongoDB" },
     { icon: <SiPostgresql />, name: "PostgreSQL" },
     { icon: <SiTypescript />, name: "TypeScript" },
     { icon: <SiJavascript />, name: "JavaScript" },
-    { icon: <SiFramer />, name: "Framer" },
     { icon: <SiTailwindcss />, name: "Tailwind" },
     { icon: <SiDocker />, name: "Docker" },
     { icon: <SiGit />, name: "Git" },

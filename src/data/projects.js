@@ -19,30 +19,12 @@ export const projects = [
     },
     {
         id: 2,
-        title: "Enterprise CRM System",
-        description: "A robust lead tracking system designed for high-data integrity and sales efficiency.",
-        challenge: "Syncing large-scale sales pipelines across multiple teams without data collisions.",
-        solution: "Utilized PostgreSQL with optimized indexing and implemented TanStack Query for efficient caching.",
-        impact: "Increased lead tracking efficiency by 50% through automated pipeline transitions.",
-        tech: ["Angular", "Node.js", "Express.js", "TypeScript", "PostgreSQL"],
-        features: [
-            "Predictive Lead Analytics",
-            "Role-based Access Control",
-            "Automated CRM Migration Tools",
-            "Interactive Data Visualizations"
-        ],
-        image: "https://placehold.co/600x400/1a1a1a/ffffff?text=CRM+System",
-        demo: "#",
-        github: "#"
-    },
-    {
-        id: 3,
         title: "Automated HRMS Portal",
         description: "An internal lifecycle management system focused on workflow automation and security.",
         challenge: "Managing complex multi-level approval hierarchies for thousands of employees.",
         solution: "Designed a state-machine based workflow engine to handle dynamic approval layers transparently.",
         impact: "Reduced manual HR administrative tasks by 40% through end-to-end automation.",
-        tech: ["Angular", "Node.js", "Express.js", "PrimeNG", "MongoDB"],
+        tech: ["React", "Node.js", "Express.js", "MongoDB"],
         features: [
             "Smart Leave Management",
             "Performance Review Engine",

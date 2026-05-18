@@ -4,7 +4,7 @@ export const education = [
         degree: "Master of  Computer Applications ",
         institution: "Bharathiyar University",
         year: "2024 - 2026",
-        description: "Graduated with First Class with Distinction. key coursework included Data Structures, Algorithms, DBMS,Java , and Web Development."
+        description: "Graduated with First Class with Distinction. key coursework included Data Structures & Algorithms, DBMS,Java , and Web Development."
     },
     {
         id: 2,

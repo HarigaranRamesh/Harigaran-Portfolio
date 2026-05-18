@@ -1,12 +1,11 @@
-import { FaReact, FaNodeJs, FaJava, FaGitAlt, FaGithub, FaJs, FaAngular, FaHtml5, FaCss3Alt, FaBootstrap, FaDocker } from "react-icons/fa";
-import { SiMongodb, SiPostgresql, SiSpringboot, SiExpress, SiMysql, SiPostman, SiNetlify, SiHeroku, SiVercel, SiRender, SiRedux } from "react-icons/si";
+import { FaReact, FaNodeJs, FaGitAlt, FaGithub, FaJs, FaHtml5, FaCss3Alt, FaBootstrap, FaDocker, FaLaptopCode } from "react-icons/fa";
+import { SiMongodb, SiPostgresql, SiExpress, SiPostman, SiNetlify, SiHeroku, SiVercel, SiRender, SiRedux, SiNextdotjs } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
 
 export const skills = [
     {
         category: "Programming Languages",
         items: [
-            { name: "Java", icon: FaJava, color: "#007396", level: 50 },
             { name: "JavaScript", icon: FaJs, color: "#F7DF1E", level: 70 },
             { name: "TypeScript", icon: FaJs, color: "#3178C6", level: 70 },
         ]
@@ -17,12 +16,12 @@ export const skills = [
             { name: "HTML5", icon: FaHtml5, color: "#E34F26", level: 95 },
             { name: "CSS3", icon: FaCss3Alt, color: "#1572B6", level: 90 },
             { name: "React", icon: FaReact, color: "#61DAFB", level: 70 },
+            { name: "Next.js", icon: SiNextdotjs, color: "#ffffff", level: 70 },
             { name: "Redux", icon: SiRedux, color: "#764ABC", level: 50 },
-            { name: "Angular", icon: FaAngular, color: "#DD0031", level: 60 },
             { name: "Node.js", icon: FaNodeJs, color: "#339933", level: 60 },
             { name: "Express.js", icon: SiExpress, color: "#ffffff", level: 60 },
-            { name: "Spring Boot", icon: SiSpringboot, color: "#6DB33F", level: 50 },
             { name: "Bootstrap", icon: FaBootstrap, color: "#7952B3", level: 80 },
+            { name: "CMS", icon: FaLaptopCode, color: "#4A90E2", level: 60 },
         ]
     },
     {
