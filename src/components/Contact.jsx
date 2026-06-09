@@ -2,10 +2,7 @@ import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { FaPaperPlane, FaEnvelope, FaCheck, FaExclamationCircle } from "react-icons/fa";
-import emailjs from "@emailjs/browser";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import Magnetic from "./common/Magnetic";
-import { db } from "../firebase";
 import "../styles/Contact.css";
 
 const Contact = () => {
@@ -21,109 +18,12 @@ const Contact = () => {
 
     const sendEmail = async (e) => {
         e.preventDefault();
-        setLoading(true);
-        setStatus(null);
-
-        const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-        const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-
-
-        if (!serviceId || !templateId || !publicKey) {
-            console.error("EmailJS keys are missing.");
-            setErrorMessage("Configuration Error: EmailJS keys missing.");
-            setStatus("error");
-            setLoading(false);
-            return;
-        }
-
-        // Save to Firestore (Fire & Forget, or await if critical)
-        const formData = new FormData(formRef.current);
-        const data = {
-            user_name: formData.get("user_name"),
-            user_email: formData.get("user_email"),
-            user_phone: formData.get("user_phone"),
-            message: formData.get("message"),
-            timestamp: serverTimestamp(),
-        };
-
-        // Helper to timeout a promise
-        const withTimeout = (promise, ms) => {
-            return new Promise((resolve, reject) => {
-                const timer = setTimeout(() => {
-                    reject(new Error("Operation timed out"));
-                }, ms);
-
-                promise
-                    .then((value) => {
-                        clearTimeout(timer);
-                        resolve(value);
-                    })
-                    .catch((reason) => {
-                        clearTimeout(timer);
-                        reject(reason);
-                    });
-            });
-        };
-
-        const emailPromise = withTimeout(
-            emailjs.send(
-                serviceId,
-                templateId,
-                {
-                    from_name: data.user_name,
-                    to_name: "Harigaran",
-                    from_email: data.user_email,
-                    reply_to: data.user_email,
-                    user_name: data.user_name,
-                    user_email: data.user_email,
-                    user_phone: data.user_phone,
-                    message: data.message,
-                },
-                publicKey
-            ),
-            10000 // 10 second timeout
+        setLoading(false);
+        setStatus("error");
+        setErrorMessage(
+            "Contact form is disabled because Firebase and EmailJS integration has been removed."
         );
-
-        const dbPromise = withTimeout(
-            addDoc(collection(db, "messages"), data),
-            10000 // 10 second timeout
-        );
-
-        try {
-            const results = await Promise.allSettled([emailPromise, dbPromise]);
-            const emailResult = results[0];
-            const dbResult = results[1];
-
-            if (emailResult.status === "fulfilled" && dbResult.status === "fulfilled") {
-                setStatus("success");
-                formRef.current.reset();
-            } else {
-                setStatus("error");
-                let errorMsg = "";
-                if (emailResult.status === "rejected") {
-                    console.error("EmailJS Error:", emailResult.reason);
-                    errorMsg += "Email failed. ";
-                }
-                if (dbResult.status === "rejected") {
-                    console.error("Firestore Error:", dbResult.reason);
-                    errorMsg += "Database save failed. ";
-                }
-                setErrorMessage(errorMsg || "Submission failed.");
-            }
-        } catch (error) {
-            console.error("Unexpected error:", error);
-            setErrorMessage("Unexpected error occurred.");
-            setStatus("error");
-        } finally {
-            setLoading(false);
-            if (status === 'success') {
-                setTimeout(() => setStatus(null), 5000);
-            }
-        }
     };
-
     return (
         <section id="contact" className="section contact-section">
             <div className="contact-bg-glow"></div>

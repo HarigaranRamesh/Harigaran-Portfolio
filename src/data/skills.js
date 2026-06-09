@@ -1,5 +1,5 @@
-import { FaReact, FaNodeJs, FaGitAlt, FaGithub, FaJs, FaHtml5, FaCss3Alt, FaBootstrap, FaDocker, FaLaptopCode } from "react-icons/fa";
-import { SiMongodb, SiPostgresql, SiExpress, SiPostman, SiNetlify, SiHeroku, SiVercel, SiRender, SiRedux, SiNextdotjs } from "react-icons/si";
+import { FaReact, FaNodeJs, FaGitAlt, FaGithub, FaJs, FaHtml5, FaCss3Alt, FaBootstrap, FaDocker, FaLaptopCode, FaSlack } from "react-icons/fa";
+import { SiMongodb, SiPostgresql, SiExpress, SiPostman, SiNetlify, SiHeroku, SiVercel, SiRender, SiRedux, SiNextdotjs, SiRedis, SiRabbitmq, SiBruno, SiPayloadcms } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
 
 export const skills = [
@@ -22,14 +22,16 @@ export const skills = [
             { name: "Express.js", icon: SiExpress, color: "#ffffff", level: 60 },
             { name: "Bootstrap", icon: FaBootstrap, color: "#7952B3", level: 80 },
             { name: "CMS", icon: FaLaptopCode, color: "#4A90E2", level: 60 },
+            { name: "Payload CMS", icon: SiPayloadcms, color: "#ffffff", level: 60 },
         ]
     },
     {
-        category: "Databases",
+        category: "Databases & Caching",
         items: [
             { name: "MongoDB", icon: SiMongodb, color: "#47A248", level: 70 },
             { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1", level: 70 },
-
+            { name: "Redis", icon: SiRedis, color: "#DC382D", level: 70 },
+            { name: "RabbitMQ", icon: SiRabbitmq, color: "#FF6600", level: 65 },
         ]
     },
     {
@@ -53,7 +55,9 @@ export const skills = [
         items: [
             { name: "VS Code", icon: VscVscode, color: "#007ACC", level: 95 },
             { name: "Postman", icon: SiPostman, color: "#FF6C37", level: 85 },
+            { name: "Bruno", icon: SiBruno, color: "#32465A", level: 80 },
             { name: "Docker", icon: FaDocker, color: "#2496ED", level: 70 },
+            { name: "Slack", icon: FaSlack, color: "#4A154B", level: 85 },
         ]
     },
 ];

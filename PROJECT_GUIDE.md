@@ -1,13 +1,13 @@
 # Portfolio Project Guide
 
 ## 1. Overview
-This is a personal portfolio website built with **React**. It features a responsive design, a contact form that sends emails and saves messages to a database, and an **Admin Dashboard** to view those messages.
+This is a personal portfolio website built with **React**. It features a responsive design, and includes a contact form and admin dashboard UI that are currently disabled because external EmailJS and Firebase integrations have been removed.
 
 ## 2. Technology Stack
 - **Frontend**: React, Vite
 - **Styling**: CSS, Framer Motion (only for animations), React Icons
-- **Email Service**: EmailJS (sends emails directly from the frontend)
-- **Database & Auth**: Firebase (Firestore for data, Authentication for admin login)
+- **Email Service**: Removed from this version
+- **Database & Auth**: Removed from this version
 
 ## 3. Setup Instructions (For New Users)
 
@@ -22,25 +22,10 @@ This is a personal portfolio website built with **React**. It features a respons
     npm install
     ```
 
-## 4. Configuration (.env)
-This project requires connection keys for EmailJS and Firebase. These are stored in a `.env` file in the root directory.
+## 4. Configuration
+EmailJS and Firebase configuration have been removed from this project.
 
-**Create a file named `.env` and add the following keys:**
-
-```ini
-# EmailJS Configuration (for sending emails)
-VITE_EMAILJS_SERVICE_ID=your_service_id
-VITE_EMAILJS_TEMPLATE_ID=your_template_id
-VITE_EMAILJS_PUBLIC_KEY=your_public_key
-
-# Firebase Configuration (for Admin Dashboard)
-VITE_FIREBASE_API_KEY=your_api_key
-VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID=your_project_id
-VITE_FIREBASE_STORAGE_BUCKET=your_project.firebasestorage.app
-VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-VITE_FIREBASE_APP_ID=your_app_id
-```
+The contact form and admin dashboard are currently disabled unless those services are restored.
 
 ## 5. How to Run
 To start the website locally:
@@ -54,21 +39,11 @@ It will typically run on `http://localhost:5173`.
 ### Contact Form
 - Located at the bottom of the main page.
 - Fields: Name, Email, Phone, Message.
-- **Action**: When a user submits, two things happen:
-    1.  An email is sent to you via EmailJS.
-    2.  The message is saved to the Firebase Database.
+- **Status**: The contact form is currently disabled because EmailJS and Firebase integration have been removed.
 
-### Admin Dashboard (New Feature)
-- **URL**: [http://localhost:5173/login](http://localhost:5173/login) (or `/admin`)
-- **Purpose**: To view all messages submitted through the contact form.
-- **Login**: Secured by Firebase Authentication.
-    - *Note: Only users created in the Firebase Console can log in.*
-
-#### How to create an Admin User:
-1.  Go to [Firebase Console](https://console.firebase.google.com/).
-2.  Navigate to **Authentication** > **Users**.
-3.  Click **"Add user"**.
-4.  Enter the email/password you want to use for login.
+### Admin Dashboard
+- The admin login and dashboard are disabled in this version.
+- Restore Firebase configuration to re-enable admin authentication and message management.
 
 ## 7. Folder Structure
 - `src/components`: Contains all React components (Navbar, Hero, Contact, etc.).
