@@ -11,6 +11,8 @@
     "cms": "npm run develop --prefix cms"
   },
   "dependencies": {
+    "@sanity/client": "^8.17.0",
+    "@sanity/image-url": "^2.2.0",
     "framer-motion": "^12.23.25",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
