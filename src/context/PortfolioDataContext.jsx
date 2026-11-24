@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { isSanityConfigured, fetchSanityProfile, fetchSanitySkills, fetchSanityProjects, fetchSanityExperience, fetchSanityEducation, fetchSanityMethodology, fetchSanityTestimonials } from "../services/sanity";
+import { isSanityConfigured, fetchBackendPortfolio, fetchSanityProfile, fetchSanitySkills, fetchSanityProjects, fetchSanityExperience, fetchSanityEducation, fetchSanityMethodology, fetchSanityTestimonials } from "../services/sanity";
 import { isStrapiActive, fetchProfile as fetchStrapiProfile, fetchSkills as fetchStrapiSkills, fetchProjects as fetchStrapiProjects, fetchExperience as fetchStrapiExperience, fetchEducation as fetchStrapiEducation, fetchMethodology as fetchStrapiMethodology, fetchTestimonials as fetchStrapiTestimonials } from "../services/strapi";
 import { defaultProfile } from "../data/profile";
 import { projects as defaultProjects } from "../data/projects";
@@ -24,7 +24,25 @@ export const PortfolioDataProvider = ({ children }) => {
     const [cmsProvider, setCmsProvider] = useState("static");
 
     const loadAllData = async () => {
-        // Priority 1: Sanity Cloud CMS (24/7 cloud without servers)
+        // Priority 1: Secure Serverless Backend API (Zero exposure to client or browser)
+        try {
+            const backendData = await fetchBackendPortfolio();
+            if (backendData) {
+                setProfile(backendData.profile);
+                setSkills(backendData.skills);
+                setProjects(backendData.projects);
+                setExperience(backendData.experience);
+                setEducation(backendData.education);
+                setMethodology(backendData.methodology);
+                setTestimonials(backendData.testimonials);
+                setCmsProvider("backend");
+                return;
+            }
+        } catch (e) {
+            console.debug("Backend API not reachable:", e);
+        }
+
+        // Priority 2: Sanity Cloud CMS (Direct client fetch if configured locally)
         if (isSanityConfigured()) {
             setIsLoading(true);
             try {

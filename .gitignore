@@ -1,13 +1,9 @@
-# Environment Variables (NEVER commit to git)
-.env
-.env.*
-.env.local
+# Environment Variables (NEVER commit to git - no exceptions)
 *.env
-!.env.example
-studio/.env
-studio/.env.*
-cms/.env
-cms/.env.*
+*.env.*
+.env*
+studio/.env*
+cms/.env*
 
 # Logs
 logs
