@@ -7,8 +7,20 @@ import { testimonials as defaultTestimonials } from "../data/testimonials";
 import { methodology as defaultMethodology } from "../data/methodology";
 import { resolveSkillIcon } from "../utils/iconResolver";
 
-const STRAPI_BASE_URL = import.meta.env.VITE_STRAPI_API_URL || "http://localhost:1337";
+const STRAPI_BASE_URL = import.meta.env.VITE_STRAPI_API_URL || "";
 const STRAPI_TOKEN = import.meta.env.VITE_STRAPI_API_TOKEN || "";
+
+/**
+ * Check if a valid remote Strapi instance is configured.
+ * In production, if no remote URL is configured, we immediately return static data (0ms delay, 0 console errors).
+ */
+export const isStrapiActive = () => {
+    if (!STRAPI_BASE_URL) return false;
+    if (import.meta.env.PROD && (STRAPI_BASE_URL.includes("localhost") || STRAPI_BASE_URL.includes("127.0.0.1"))) {
+        return false;
+    }
+    return true;
+};
 
 /**
  * Resolves a media file path or object from Strapi into an absolute accessible URL.
@@ -75,6 +87,10 @@ export const normalizeStrapiData = (data) => {
  * Fetch wrapper with timeout and fallback support
  */
 async function fetchStrapiEndpoint(endpoint, params = "populate=*") {
+    if (!isStrapiActive()) {
+        return null;
+    }
+
     const url = `${STRAPI_BASE_URL}/api/${endpoint}?${params}`;
     const headers = {
         "Content-Type": "application/json"
