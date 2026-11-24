@@ -33,18 +33,56 @@ This portfolio is now configured with universal CMS support:
 ---
 
 ### Step 4: Add Project ID to Vercel and Local Environment
-In your `.env` file locally:
+In your `.env` file locally (already set!):
 ```env
-VITE_SANITY_PROJECT_ID=your_project_id_here
+VITE_SANITY_PROJECT_ID=iudzm87u
 VITE_SANITY_DATASET=production
 ```
 
 In your **Vercel Dashboard**:
 1. Go to **Settings** → **Environment Variables**.
 2. Add:
-   - `VITE_SANITY_PROJECT_ID` = `your_project_id_here`
+   - `VITE_SANITY_PROJECT_ID` = `iudzm87u`
    - `VITE_SANITY_DATASET` = `production`
 3. Click **Redeploy**.
+
+---
+
+### Step 5: Run or Deploy your Sanity Studio Dashboard
+
+#### Option A: Run your Studio Locally
+Run this command from your portfolio folder:
+```bash
+npm run studio
+```
+It will open your visual admin panel at `http://localhost:3333` where you can edit:
+- Profile (Bio, Hero, Social links, Avatar, Resume download)
+- Projects (Titles, Descriptions, Tech tags, Screenshots, Demo links)
+- Skills (Languages, Frameworks, Levels, Brand colors)
+- Work Experience
+- Education
+- Methodology Steps
+- Testimonials
+
+#### Option B: Deploy your Free Cloud Studio (Live 24/7 on the Web)
+Deploy your Sanity Studio to a permanent free Sanity domain:
+```bash
+cd studio && npx sanity deploy
+```
+Choose a hostname (e.g. `harigaran-portfolio`), and you'll get a permanent live admin URL:
+`https://harigaran-portfolio.sanity.studio` accessible from any browser anywhere!
+
+---
+
+### Step 6 (Optional): Auto-Populate all Existing Content with 1 Command
+To automatically upload all your existing 27 skills, projects, experience, education, and profile data into Sanity:
+1. In your Sanity dashboard ([manage.sanity.io](https://manage.sanity.io)) → **Project `iudzm87u`** → **API** → **Tokens**.
+2. Click **+ Add API token**, select **Editor** permissions, and copy the token.
+3. Run in your terminal:
+```bash
+SANITY_AUTH_TOKEN=your_token_here npm run seed:sanity
+```
+Everything will be uploaded directly to Sanity cloud instantly!
 
 ---
 

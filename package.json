@@ -8,6 +8,9 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "studio": "npm run dev --prefix studio",
+    "studio:deploy": "npm run deploy --prefix studio",
+    "seed:sanity": "node scripts/seedSanity.js",
     "cms": "npm run develop --prefix cms"
   },
   "dependencies": {

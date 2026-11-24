@@ -40,3 +40,9 @@ cms/*.db
 cms/.env
 cms/dist
 
+# Sanity Studio
+studio/.sanity
+studio/dist
+studio/.env
+
+
