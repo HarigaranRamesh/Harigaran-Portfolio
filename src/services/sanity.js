@@ -9,7 +9,7 @@ import { testimonials as defaultTestimonials } from "../data/testimonials";
 import { methodology as defaultMethodology } from "../data/methodology";
 import { resolveSkillIcon } from "../utils/iconResolver";
 
-const SANITY_PROJECT_ID = import.meta.env.VITE_SANITY_PROJECT_ID || "";
+const SANITY_PROJECT_ID = import.meta.env.VITE_SANITY_PROJECT_ID || "iudzm87u";
 const SANITY_DATASET = import.meta.env.VITE_SANITY_DATASET || "production";
 const SANITY_API_VERSION = "2024-01-01";
 
