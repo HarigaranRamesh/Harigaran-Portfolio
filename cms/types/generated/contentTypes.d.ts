@@ -624,7 +624,10 @@ export interface ApiProfileProfile extends Struct.SingleTypeSchema {
     resumeFile: Schema.Attribute.Media<'files'>;
     resumeUrl: Schema.Attribute.String;
     socialGithub: Schema.Attribute.String;
+    socialLeetcode: Schema.Attribute.String;
     socialLinkedin: Schema.Attribute.String;
+    socialLinks: Schema.Attribute.JSON;
+    socialTwitter: Schema.Attribute.String;
     stats: Schema.Attribute.JSON;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
