@@ -15,7 +15,10 @@ import {
     FaPython,
     FaJava,
     FaAws,
-    FaDatabase
+    FaDatabase,
+    FaLightbulb,
+    FaDraftingCompass,
+    FaRocket
 } from "react-icons/fa";
 import {
     SiMongodb,
@@ -94,7 +97,12 @@ export const iconMap = {
     SiPostman,
     SiBruno,
     FaSlack,
-    FaCode
+    FaCode,
+
+    // Methodology Icons
+    FaLightbulb,
+    FaDraftingCompass,
+    FaRocket
 };
 
 /**

@@ -43,6 +43,8 @@ export default {
           'api::education.education.findOne',
           'api::testimonial.testimonial.find',
           'api::testimonial.testimonial.findOne',
+          'api::methodology.methodology.find',
+          'api::methodology.methodology.findOne',
         ];
 
         for (const action of publicActions) {
@@ -89,7 +91,20 @@ export default {
               { label: 'Experience', value: '6 Months' },
               { label: 'Projects Completed', value: '3+' },
               { label: 'Technologies', value: '12+' }
-            ]
+            ],
+            brandLogoText: 'HARIGARAN',
+            brandStatusText: 'Available for hire',
+            brandCreatorName: 'Harigaran R',
+            socialGithub: 'https://github.com/HarigaranRamesh',
+            socialLinkedin: 'https://www.linkedin.com/in/harigaran-ramesh-554887224',
+            contactSubtitle: 'Get In Touch',
+            contactTitle: "Let's Work Together",
+            contactDescription:
+              "I'm currently available for freelance projects and open to new opportunities. If you have a project in mind or just want to say hi, send me a message!",
+            contactEmail: 'harigaran925@gmail.com',
+            contactQuoteText:
+              'Great things are not done by impulse, but by a series of small things brought together.',
+            contactQuoteAuthor: '- Vincent van Gogh'
           }
         });
         console.log('✓ Profile data seeded.');
@@ -314,6 +329,50 @@ export default {
       }
     } catch (e) {
       console.warn('Error seeding testimonials:', e);
+    }
+
+    // 9. Seed Methodology if empty
+    try {
+      const methCount = await strapi.db.query('api::methodology.methodology').count();
+      if (methCount === 0) {
+        const initialMethodology = [
+          {
+            title: '01. Analysis',
+            desc: 'Understanding business goals, user needs, and defining the technical requirements for scalability.',
+            color: '#64ffda',
+            iconName: 'FaLightbulb',
+            order: 1
+          },
+          {
+            title: '02. Architecture',
+            desc: 'Designing the blueprint, database schema, and selecting the optimal tech stack for the project.',
+            color: '#9333ea',
+            iconName: 'FaDraftingCompass',
+            order: 2
+          },
+          {
+            title: '03. Development',
+            desc: 'Engineering clean, maintainable, and well-documented code following SOLID and DRY principles.',
+            color: '#2563eb',
+            iconName: 'FaCode',
+            order: 3
+          },
+          {
+            title: '04. Deployment',
+            desc: 'Rigorous testing, optimization, and seamless deployment using modern CI/CD pipelines.',
+            color: '#10b981',
+            iconName: 'FaRocket',
+            order: 4
+          }
+        ];
+
+        for (const m of initialMethodology) {
+          await strapi.db.query('api::methodology.methodology').create({ data: m });
+        }
+        console.log(`✓ ${initialMethodology.length} methodology steps seeded.`);
+      }
+    } catch (e) {
+      console.warn('Error seeding methodology:', e);
     }
 
     console.log('🎉 Strapi initial data seeding complete.');

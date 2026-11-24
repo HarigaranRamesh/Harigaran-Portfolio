@@ -4,6 +4,7 @@ import { projects as defaultProjects } from "../data/projects";
 import { experience as defaultExperience } from "../data/experience";
 import { education as defaultEducation } from "../data/education";
 import { testimonials as defaultTestimonials } from "../data/testimonials";
+import { methodology as defaultMethodology } from "../data/methodology";
 import { resolveSkillIcon } from "../utils/iconResolver";
 
 const STRAPI_BASE_URL = import.meta.env.VITE_STRAPI_API_URL || "http://localhost:1337";
@@ -107,7 +108,7 @@ async function fetchStrapiEndpoint(endpoint, params = "populate=*") {
 }
 
 /**
- * Profile & Hero Data: Single Type `profile`
+ * Profile, Hero, Brand, and Contact Data: Single Type `profile`
  */
 export async function fetchProfile() {
     try {
@@ -134,6 +135,21 @@ export async function fetchProfile() {
                 stats: Array.isArray(data.stats) && data.stats.length > 0
                     ? data.stats
                     : defaultProfile.about.stats
+            },
+            brand: {
+                logoText: data.brandLogoText || defaultProfile.brand.logoText,
+                statusText: data.brandStatusText || defaultProfile.brand.statusText,
+                creatorName: data.brandCreatorName || defaultProfile.brand.creatorName,
+                githubUrl: data.socialGithub || defaultProfile.brand.githubUrl,
+                linkedinUrl: data.socialLinkedin || defaultProfile.brand.linkedinUrl
+            },
+            contact: {
+                subtitle: data.contactSubtitle || defaultProfile.contact.subtitle,
+                title: data.contactTitle || defaultProfile.contact.title,
+                description: data.contactDescription || defaultProfile.contact.description,
+                email: data.contactEmail || defaultProfile.contact.email,
+                quoteText: data.contactQuoteText || defaultProfile.contact.quoteText,
+                quoteAuthor: data.contactQuoteAuthor || defaultProfile.contact.quoteAuthor
             }
         };
     } catch {
@@ -193,8 +209,6 @@ export async function fetchProjects() {
 
 /**
  * Skills: Collection Type `skills`
- * Strapi can return individual skill entries with category, name, level, color, iconName.
- * We group them by category matching the existing UI contract.
  */
 export async function fetchSkills() {
     try {
@@ -203,7 +217,6 @@ export async function fetchSkills() {
             return defaultSkills;
         }
 
-        // Group by category
         const groups = {};
         for (const item of raw) {
             const categoryName = item.category || "General";
@@ -282,6 +295,28 @@ export async function fetchEducation() {
         }));
     } catch {
         return defaultEducation;
+    }
+}
+
+/**
+ * Methodology: Collection Type `methodologies`
+ */
+export async function fetchMethodology() {
+    try {
+        const raw = await fetchStrapiEndpoint("methodologies", "populate=*&sort=order:asc,createdAt:desc");
+        if (!raw || !Array.isArray(raw) || raw.length === 0) {
+            return defaultMethodology;
+        }
+
+        return raw.map((item, index) => ({
+            id: item.id || index + 1,
+            title: item.title,
+            desc: item.desc,
+            color: item.color || "#64ffda",
+            iconName: item.iconName || "FaLightbulb"
+        }));
+    } catch {
+        return defaultMethodology;
     }
 }
 

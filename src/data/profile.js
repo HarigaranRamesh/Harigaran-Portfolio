@@ -27,5 +27,22 @@ export const defaultProfile = {
             { label: "Projects Completed", value: "3+" },
             { label: "Technologies", value: "12+" },
         ]
+    },
+    brand: {
+        logoText: "HARIGARAN",
+        statusText: "Available for hire",
+        creatorName: "Harigaran R",
+        githubUrl: "https://github.com/HarigaranRamesh",
+        linkedinUrl: "https://www.linkedin.com/in/harigaran-ramesh/"
+    },
+    contact: {
+        subtitle: "Get In Touch",
+        title: "Let's Work Together",
+        description:
+            "I'm currently available for freelance projects and open to new opportunities. If you have a project in mind or just want to say hi, send me a message!",
+        email: "harigaran925@gmail.com",
+        quoteText:
+            "Great things are not done by impulse, but by a series of small things brought together.",
+        quoteAuthor: "- Vincent van Gogh"
     }
 };

@@ -5,7 +5,7 @@
     "singularName": "profile",
     "pluralName": "profiles",
     "displayName": "Profile",
-    "description": "Hero & About section details, resume link, and profile image"
+    "description": "Hero & About section details, contact info, brand identity, resume link, and profile image"
   },
   "options": {
     "draftAndPublish": false
@@ -65,6 +65,39 @@
     },
     "stats": {
       "type": "json"
+    },
+    "brandLogoText": {
+      "type": "string"
+    },
+    "brandStatusText": {
+      "type": "string"
+    },
+    "brandCreatorName": {
+      "type": "string"
+    },
+    "socialGithub": {
+      "type": "string"
+    },
+    "socialLinkedin": {
+      "type": "string"
+    },
+    "contactSubtitle": {
+      "type": "string"
+    },
+    "contactTitle": {
+      "type": "string"
+    },
+    "contactDescription": {
+      "type": "text"
+    },
+    "contactEmail": {
+      "type": "string"
+    },
+    "contactQuoteText": {
+      "type": "text"
+    },
+    "contactQuoteAuthor": {
+      "type": "string"
     }
   }
 }

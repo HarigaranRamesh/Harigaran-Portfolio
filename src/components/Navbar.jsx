@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes, FaGithub, FaLinkedin, FaEnvelope, FaSun, FaMoon } from "react-icons/fa";
 import Magnetic from "./common/Magnetic";
+import { usePortfolioData } from "../context/PortfolioDataContext";
 import "../styles/Navbar.css";
 
 const navLinks = [
@@ -14,6 +15,10 @@ const navLinks = [
 ];
 
 const Navbar = () => {
+    const { profile } = usePortfolioData();
+    const brand = profile?.brand || {};
+    const contact = profile?.contact || {};
+
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
@@ -46,12 +51,12 @@ const Navbar = () => {
                 <div className="nav-left">
                     <Magnetic>
                         <a href="#" className="nav-logo">
-                            HARIGARAN<span>.</span>
+                            {brand.logoText || "HARIGARAN"}<span>.</span>
                         </a>
                     </Magnetic>
                     <div className="status-indicator">
                         <span className="status-dot"></span>
-                        <span className="status-text">Available for hire</span>
+                        <span className="status-text">{brand.statusText || "Available for hire"}</span>
                     </div>
                 </div>
 
@@ -78,9 +83,9 @@ const Navbar = () => {
                             </button>
                         </Magnetic>
                         <div className="nav-divider"></div>
-                        <SocialLink href="https://github.com/HarigaranRamesh" icon={<FaGithub />} />
-                        <SocialLink href="https://www.linkedin.com/in/harigaran-ramesh-554887224" icon={<FaLinkedin />} />
-                        <SocialLink href="mailto:harigaran925@gmail.com" icon={<FaEnvelope />} />
+                        <SocialLink href={brand.githubUrl || "https://github.com/HarigaranRamesh"} icon={<FaGithub />} />
+                        <SocialLink href={brand.linkedinUrl || "https://www.linkedin.com/in/harigaran-ramesh-554887224"} icon={<FaLinkedin />} />
+                        <SocialLink href={contact.email ? `mailto:${contact.email}` : "mailto:harigaran925@gmail.com"} icon={<FaEnvelope />} />
                     </div>
                 </div>
 
@@ -156,9 +161,9 @@ const Navbar = () => {
                                 <div className="mobile-menu-footer">
                                     <p className="mobile-menu-label">Connect with me</p>
                                     <div className="mobile-socials">
-                                        <SocialLink href="https://github.com/HarigaranRamesh" icon={<FaGithub />} />
-                                        <SocialLink href="https://www.linkedin.com/in/harigaran-ramesh-554887224" icon={<FaLinkedin />} />
-                                        <SocialLink href="mailto:harigaran925@gmail.com" icon={<FaEnvelope />} />
+                                        <SocialLink href={brand.githubUrl || "https://github.com/HarigaranRamesh"} icon={<FaGithub />} />
+                                        <SocialLink href={brand.linkedinUrl || "https://www.linkedin.com/in/harigaran-ramesh-554887224"} icon={<FaLinkedin />} />
+                                        <SocialLink href={contact.email ? `mailto:${contact.email}` : "mailto:harigaran925@gmail.com"} icon={<FaEnvelope />} />
                                     </div>
                                     <div className="mobile-theme-toggle">
                                         <button onClick={toggleTheme} className="theme-pill">

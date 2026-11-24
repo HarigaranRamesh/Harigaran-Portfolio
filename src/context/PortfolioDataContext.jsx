@@ -6,7 +6,8 @@ import {
     fetchSkills,
     fetchExperience,
     fetchEducation,
-    fetchTestimonials
+    fetchTestimonials,
+    fetchMethodology
 } from "../services/strapi";
 import { defaultProfile } from "../data/profile";
 import { projects as defaultProjects } from "../data/projects";
@@ -14,6 +15,7 @@ import { skills as defaultSkills } from "../data/skills";
 import { experience as defaultExperience } from "../data/experience";
 import { education as defaultEducation } from "../data/education";
 import { testimonials as defaultTestimonials } from "../data/testimonials";
+import { methodology as defaultMethodology } from "../data/methodology";
 
 const PortfolioDataContext = createContext(null);
 
@@ -24,6 +26,7 @@ export const PortfolioDataProvider = ({ children }) => {
     const [experience, setExperience] = useState(defaultExperience);
     const [education, setEducation] = useState(defaultEducation);
     const [testimonials, setTestimonials] = useState(defaultTestimonials);
+    const [methodology, setMethodology] = useState(defaultMethodology);
     const [isLoading, setIsLoading] = useState(false);
     const [isDynamic, setIsDynamic] = useState(false);
 
@@ -36,14 +39,16 @@ export const PortfolioDataProvider = ({ children }) => {
                 skillsData,
                 experienceData,
                 educationData,
-                testimonialsData
+                testimonialsData,
+                methodologyData
             ] = await Promise.all([
                 fetchProfile(),
                 fetchProjects(),
                 fetchSkills(),
                 fetchExperience(),
                 fetchEducation(),
-                fetchTestimonials()
+                fetchTestimonials(),
+                fetchMethodology()
             ]);
 
             setProfile(profileData);
@@ -52,6 +57,7 @@ export const PortfolioDataProvider = ({ children }) => {
             setExperience(experienceData);
             setEducation(educationData);
             setTestimonials(testimonialsData);
+            setMethodology(methodologyData);
             setIsDynamic(true);
         } catch (err) {
             console.warn("Strapi CMS data fetch failed, using fallback static data:", err);
@@ -71,6 +77,7 @@ export const PortfolioDataProvider = ({ children }) => {
         experience,
         education,
         testimonials,
+        methodology,
         isLoading,
         isDynamic,
         refreshData: loadAllData
@@ -86,7 +93,6 @@ export const PortfolioDataProvider = ({ children }) => {
 export const usePortfolioData = () => {
     const context = useContext(PortfolioDataContext);
     if (!context) {
-        // Fallback for isolated component usage outside provider
         return {
             profile: defaultProfile,
             projects: defaultProjects,
@@ -94,6 +100,7 @@ export const usePortfolioData = () => {
             experience: defaultExperience,
             education: defaultEducation,
             testimonials: defaultTestimonials,
+            methodology: defaultMethodology,
             isLoading: false,
             isDynamic: false,
             refreshData: () => {}
