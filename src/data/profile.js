@@ -33,7 +33,10 @@ export const defaultProfile = {
         statusText: "Available for hire",
         creatorName: "Harigaran R",
         githubUrl: "https://github.com/HarigaranRamesh",
-        linkedinUrl: "https://www.linkedin.com/in/harigaran-ramesh/"
+        linkedinUrl: "https://www.linkedin.com/in/harigaran-ramesh-554887224",
+        twitterUrl: "",
+        leetcodeUrl: "",
+        socialLinks: []
     },
     contact: {
         subtitle: "Get In Touch",

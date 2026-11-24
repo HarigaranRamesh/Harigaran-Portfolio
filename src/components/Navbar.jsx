@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaBars, FaTimes, FaGithub, FaLinkedin, FaEnvelope, FaSun, FaMoon } from "react-icons/fa";
+import { FaBars, FaTimes, FaGithub, FaLinkedin, FaEnvelope, FaSun, FaMoon, FaTwitter } from "react-icons/fa";
+import { SiLeetcode } from "react-icons/si";
 import Magnetic from "./common/Magnetic";
 import { usePortfolioData } from "../context/PortfolioDataContext";
+import { resolveSkillIcon } from "../utils/iconResolver";
 import "../styles/Navbar.css";
 
 const navLinks = [
@@ -83,9 +85,15 @@ const Navbar = () => {
                             </button>
                         </Magnetic>
                         <div className="nav-divider"></div>
-                        <SocialLink href={brand.githubUrl || "https://github.com/HarigaranRamesh"} icon={<FaGithub />} />
-                        <SocialLink href={brand.linkedinUrl || "https://www.linkedin.com/in/harigaran-ramesh-554887224"} icon={<FaLinkedin />} />
-                        <SocialLink href={contact.email ? `mailto:${contact.email}` : "mailto:harigaran925@gmail.com"} icon={<FaEnvelope />} />
+                        {brand.githubUrl && <SocialLink href={brand.githubUrl} icon={<FaGithub />} />}
+                        {brand.linkedinUrl && <SocialLink href={brand.linkedinUrl} icon={<FaLinkedin />} />}
+                        {brand.twitterUrl && <SocialLink href={brand.twitterUrl} icon={<FaTwitter />} />}
+                        {brand.leetcodeUrl && <SocialLink href={brand.leetcodeUrl} icon={<SiLeetcode />} />}
+                        {(brand.socialLinks || []).map((link, idx) => {
+                            const IconComponent = resolveSkillIcon(link.iconName || link.icon);
+                            return <SocialLink key={idx} href={link.url} icon={<IconComponent />} />;
+                        })}
+                        {contact.email && <SocialLink href={`mailto:${contact.email}`} icon={<FaEnvelope />} />}
                     </div>
                 </div>
 
@@ -161,9 +169,15 @@ const Navbar = () => {
                                 <div className="mobile-menu-footer">
                                     <p className="mobile-menu-label">Connect with me</p>
                                     <div className="mobile-socials">
-                                        <SocialLink href={brand.githubUrl || "https://github.com/HarigaranRamesh"} icon={<FaGithub />} />
-                                        <SocialLink href={brand.linkedinUrl || "https://www.linkedin.com/in/harigaran-ramesh-554887224"} icon={<FaLinkedin />} />
-                                        <SocialLink href={contact.email ? `mailto:${contact.email}` : "mailto:harigaran925@gmail.com"} icon={<FaEnvelope />} />
+                                        {brand.githubUrl && <SocialLink href={brand.githubUrl} icon={<FaGithub />} />}
+                                        {brand.linkedinUrl && <SocialLink href={brand.linkedinUrl} icon={<FaLinkedin />} />}
+                                        {brand.twitterUrl && <SocialLink href={brand.twitterUrl} icon={<FaTwitter />} />}
+                                        {brand.leetcodeUrl && <SocialLink href={brand.leetcodeUrl} icon={<SiLeetcode />} />}
+                                        {(brand.socialLinks || []).map((link, idx) => {
+                                            const IconComponent = resolveSkillIcon(link.iconName || link.icon);
+                                            return <SocialLink key={idx} href={link.url} icon={<IconComponent />} />;
+                                        })}
+                                        {contact.email && <SocialLink href={`mailto:${contact.email}`} icon={<FaEnvelope />} />}
                                     </div>
                                     <div className="mobile-theme-toggle">
                                         <button onClick={toggleTheme} className="theme-pill">

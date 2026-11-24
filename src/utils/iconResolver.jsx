@@ -18,7 +18,10 @@ import {
     FaDatabase,
     FaLightbulb,
     FaDraftingCompass,
-    FaRocket
+    FaRocket,
+    FaLinkedin,
+    FaTwitter,
+    FaEnvelope
 } from "react-icons/fa";
 import {
     SiMongodb,
@@ -42,7 +45,10 @@ import {
     SiGraphql,
     SiMysql,
     SiKubernetes,
-    SiFigma
+    SiFigma,
+    SiLeetcode,
+    SiYoutube,
+    SiInstagram
 } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
 
@@ -93,6 +99,12 @@ export const iconMap = {
     // Tools & Version Control
     FaGitAlt,
     FaGithub,
+    FaLinkedin,
+    FaTwitter,
+    FaEnvelope,
+    SiLeetcode,
+    SiYoutube,
+    SiInstagram,
     VscVscode,
     SiPostman,
     SiBruno,

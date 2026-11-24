@@ -81,6 +81,15 @@
     "socialLinkedin": {
       "type": "string"
     },
+    "socialTwitter": {
+      "type": "string"
+    },
+    "socialLeetcode": {
+      "type": "string"
+    },
+    "socialLinks": {
+      "type": "json"
+    },
     "contactSubtitle": {
       "type": "string"
     },

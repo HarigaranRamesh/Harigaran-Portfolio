@@ -141,7 +141,10 @@ export async function fetchProfile() {
                 statusText: data.brandStatusText || defaultProfile.brand.statusText,
                 creatorName: data.brandCreatorName || defaultProfile.brand.creatorName,
                 githubUrl: data.socialGithub || defaultProfile.brand.githubUrl,
-                linkedinUrl: data.socialLinkedin || defaultProfile.brand.linkedinUrl
+                linkedinUrl: data.socialLinkedin || defaultProfile.brand.linkedinUrl,
+                twitterUrl: data.socialTwitter || "",
+                leetcodeUrl: data.socialLeetcode || "",
+                socialLinks: Array.isArray(data.socialLinks) ? data.socialLinks : []
             },
             contact: {
                 subtitle: data.contactSubtitle || defaultProfile.contact.subtitle,
