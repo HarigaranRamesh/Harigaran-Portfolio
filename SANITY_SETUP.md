@@ -33,16 +33,16 @@ This portfolio is now configured with universal CMS support:
 ---
 
 ### Step 4: Add Project ID to Vercel and Local Environment
-In your `.env` file locally (already set!):
+In your `.env` file locally:
 ```env
-VITE_SANITY_PROJECT_ID=iudzm87u
+VITE_SANITY_PROJECT_ID=your_project_id_here
 VITE_SANITY_DATASET=production
 ```
 
 In your **Vercel Dashboard**:
 1. Go to **Settings** → **Environment Variables**.
 2. Add:
-   - `VITE_SANITY_PROJECT_ID` = `iudzm87u`
+   - `VITE_SANITY_PROJECT_ID` = `your_project_id_here`
    - `VITE_SANITY_DATASET` = `production`
 3. Click **Redeploy**.
 
@@ -76,7 +76,7 @@ Choose a hostname (e.g. `harigaran-portfolio`), and you'll get a permanent live 
 
 ### Step 6 (Optional): Auto-Populate all Existing Content with 1 Command
 To automatically upload all your existing 27 skills, projects, experience, education, and profile data into Sanity:
-1. In your Sanity dashboard ([manage.sanity.io](https://manage.sanity.io)) → **Project `iudzm87u`** → **API** → **Tokens**.
+1. In your Sanity dashboard ([manage.sanity.io](https://manage.sanity.io)) → **Your Project** → **API** → **Tokens**.
 2. Click **+ Add API token**, select **Editor** permissions, and copy the token.
 3. Run in your terminal:
 ```bash

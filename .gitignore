@@ -1,13 +1,24 @@
+# Environment Variables (NEVER commit to git)
+.env
+.env.*
+.env.local
+*.env
+!.env.example
+studio/.env
+studio/.env.*
+cms/.env
+cms/.env.*
+
 # Logs
 logs
 *.log
-.env
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies and Build Outputs
 node_modules
 dist
 dist-ssr
@@ -37,12 +48,8 @@ cms/public/uploads/*
 cms/*.sqlite
 cms/*.sqlite3
 cms/*.db
-cms/.env
 cms/dist
 
 # Sanity Studio
 studio/.sanity
 studio/dist
-studio/.env
-
-

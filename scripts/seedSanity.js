@@ -1,11 +1,11 @@
 import { createClient } from "@sanity/client";
 
-const projectId = process.env.VITE_SANITY_PROJECT_ID || "iudzm87u";
+const projectId = process.env.VITE_SANITY_PROJECT_ID;
 const dataset = process.env.VITE_SANITY_DATASET || "production";
 const token = process.env.SANITY_AUTH_TOKEN || process.env.SANITY_TOKEN;
 
-if (!token) {
-    console.error("❌ SANITY_AUTH_TOKEN environment variable is required.");
+if (!projectId || !token) {
+    console.error("❌ Both VITE_SANITY_PROJECT_ID and SANITY_AUTH_TOKEN environment variables are required.");
     process.exit(1);
 }
 
