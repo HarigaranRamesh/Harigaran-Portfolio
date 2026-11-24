@@ -5,7 +5,7 @@
     "singularName": "profile",
     "pluralName": "profiles",
     "displayName": "Profile",
-    "description": "Hero & About section details, contact info, brand identity, resume link, and profile image"
+    "description": "Entire website configuration: Hero, About, Sections headers, Brand, Socials, and Contact"
   },
   "options": {
     "draftAndPublish": false
@@ -30,6 +30,9 @@
     "heroContactText": {
       "type": "string"
     },
+    "heroExploreText": {
+      "type": "string"
+    },
     "aboutSectionNumber": {
       "type": "string"
     },
@@ -44,6 +47,9 @@
     },
     "aboutBio2": {
       "type": "text"
+    },
+    "aboutResumeButtonText": {
+      "type": "string"
     },
     "profileImage": {
       "type": "media",
@@ -66,6 +72,45 @@
     "stats": {
       "type": "json"
     },
+    "skillsSectionNumber": {
+      "type": "string"
+    },
+    "skillsSectionTitle": {
+      "type": "string"
+    },
+    "skillsDescription": {
+      "type": "text"
+    },
+    "projectsSectionNumber": {
+      "type": "string"
+    },
+    "projectsSectionTitle": {
+      "type": "string"
+    },
+    "projectsViewDetailsText": {
+      "type": "string"
+    },
+    "experienceSectionTitle": {
+      "type": "string"
+    },
+    "educationSectionTitle": {
+      "type": "string"
+    },
+    "methodologySectionNumber": {
+      "type": "string"
+    },
+    "methodologySectionTitle": {
+      "type": "string"
+    },
+    "methodologyDescription": {
+      "type": "text"
+    },
+    "testimonialsSectionNumber": {
+      "type": "string"
+    },
+    "testimonialsSectionTitle": {
+      "type": "string"
+    },
     "brandLogoText": {
       "type": "string"
     },
@@ -74,6 +119,12 @@
     },
     "brandCreatorName": {
       "type": "string"
+    },
+    "brandCopyrightText": {
+      "type": "string"
+    },
+    "preloaderTags": {
+      "type": "json"
     },
     "socialGithub": {
       "type": "string"
@@ -106,6 +157,9 @@
       "type": "text"
     },
     "contactQuoteAuthor": {
+      "type": "string"
+    },
+    "contactSubmitButtonText": {
       "type": "string"
     }
   }

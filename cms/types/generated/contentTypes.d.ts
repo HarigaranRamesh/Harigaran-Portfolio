@@ -580,7 +580,7 @@ export interface ApiMethodologyMethodology extends Struct.CollectionTypeSchema {
 export interface ApiProfileProfile extends Struct.SingleTypeSchema {
   collectionName: 'profiles';
   info: {
-    description: 'Hero & About section details, contact info, brand identity, resume link, and profile image';
+    description: 'Entire website configuration: Hero, About, Sections headers, Brand, Socials, and Contact';
     displayName: 'Profile';
     pluralName: 'profiles';
     singularName: 'profile';
@@ -592,8 +592,10 @@ export interface ApiProfileProfile extends Struct.SingleTypeSchema {
     aboutBio1: Schema.Attribute.Text;
     aboutBio2: Schema.Attribute.Text;
     aboutLeadText: Schema.Attribute.Text;
+    aboutResumeButtonText: Schema.Attribute.String;
     aboutSectionNumber: Schema.Attribute.String;
     aboutSectionTitle: Schema.Attribute.String;
+    brandCopyrightText: Schema.Attribute.String;
     brandCreatorName: Schema.Attribute.String;
     brandLogoText: Schema.Attribute.String;
     brandStatusText: Schema.Attribute.String;
@@ -601,13 +603,17 @@ export interface ApiProfileProfile extends Struct.SingleTypeSchema {
     contactEmail: Schema.Attribute.String;
     contactQuoteAuthor: Schema.Attribute.String;
     contactQuoteText: Schema.Attribute.Text;
+    contactSubmitButtonText: Schema.Attribute.String;
     contactSubtitle: Schema.Attribute.String;
     contactTitle: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    educationSectionTitle: Schema.Attribute.String;
+    experienceSectionTitle: Schema.Attribute.String;
     heroContactText: Schema.Attribute.String;
     heroDescription: Schema.Attribute.Text;
+    heroExploreText: Schema.Attribute.String;
     heroGreeting: Schema.Attribute.String;
     heroTitleHighlight: Schema.Attribute.String;
     heroTitlePrefix: Schema.Attribute.String;
@@ -618,17 +624,29 @@ export interface ApiProfileProfile extends Struct.SingleTypeSchema {
       'api::profile.profile'
     > &
       Schema.Attribute.Private;
+    methodologyDescription: Schema.Attribute.Text;
+    methodologySectionNumber: Schema.Attribute.String;
+    methodologySectionTitle: Schema.Attribute.String;
+    preloaderTags: Schema.Attribute.JSON;
     profileImage: Schema.Attribute.Media<'images'>;
     profileImageUrl: Schema.Attribute.String;
+    projectsSectionNumber: Schema.Attribute.String;
+    projectsSectionTitle: Schema.Attribute.String;
+    projectsViewDetailsText: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     resumeFile: Schema.Attribute.Media<'files'>;
     resumeUrl: Schema.Attribute.String;
+    skillsDescription: Schema.Attribute.Text;
+    skillsSectionNumber: Schema.Attribute.String;
+    skillsSectionTitle: Schema.Attribute.String;
     socialGithub: Schema.Attribute.String;
     socialLeetcode: Schema.Attribute.String;
     socialLinkedin: Schema.Attribute.String;
     socialLinks: Schema.Attribute.JSON;
     socialTwitter: Schema.Attribute.String;
     stats: Schema.Attribute.JSON;
+    testimonialsSectionNumber: Schema.Attribute.String;
+    testimonialsSectionTitle: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

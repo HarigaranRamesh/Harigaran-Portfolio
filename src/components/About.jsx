@@ -115,7 +115,7 @@ const About = () => {
                                         rel="noreferrer"
                                         className="btn-outline modern-btn"
                                     >
-                                        Download Resume
+                                        {about.resumeButtonText || "Download Resume"}
                                         <span className="btn-shine"></span>
                                     </a>
                                 </Magnetic>

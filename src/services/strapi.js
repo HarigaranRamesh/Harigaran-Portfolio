@@ -122,7 +122,8 @@ export async function fetchProfile() {
                 titleHighlight: data.heroTitleHighlight || defaultProfile.hero.titleHighlight,
                 description: data.heroDescription || defaultProfile.hero.description,
                 viewWorkButtonText: data.heroViewWorkText || defaultProfile.hero.viewWorkButtonText,
-                contactButtonText: data.heroContactText || defaultProfile.hero.contactButtonText
+                contactButtonText: data.heroContactText || defaultProfile.hero.contactButtonText,
+                exploreText: data.heroExploreText || defaultProfile.hero.exploreText
             },
             about: {
                 sectionNumber: data.aboutSectionNumber || defaultProfile.about.sectionNumber,
@@ -132,9 +133,25 @@ export async function fetchProfile() {
                 bioParagraph2: data.aboutBio2 || defaultProfile.about.bioParagraph2,
                 profileImage: getStrapiMediaUrl(data.profileImage) || getStrapiMediaUrl(data.profileImageUrl) || defaultProfile.about.profileImage,
                 resumeUrl: getStrapiMediaUrl(data.resumeFile) || data.resumeUrl || defaultProfile.about.resumeUrl,
+                resumeButtonText: data.aboutResumeButtonText || defaultProfile.about.resumeButtonText,
                 stats: Array.isArray(data.stats) && data.stats.length > 0
                     ? data.stats
                     : defaultProfile.about.stats
+            },
+            sections: {
+                skillsSectionNumber: data.skillsSectionNumber || defaultProfile.sections.skillsSectionNumber,
+                skillsSectionTitle: data.skillsSectionTitle || defaultProfile.sections.skillsSectionTitle,
+                skillsDescription: data.skillsDescription || defaultProfile.sections.skillsDescription,
+                projectsSectionNumber: data.projectsSectionNumber || defaultProfile.sections.projectsSectionNumber,
+                projectsSectionTitle: data.projectsSectionTitle || defaultProfile.sections.projectsSectionTitle,
+                projectsViewDetailsText: data.projectsViewDetailsText || defaultProfile.sections.projectsViewDetailsText,
+                experienceSectionTitle: data.experienceSectionTitle || defaultProfile.sections.experienceSectionTitle,
+                educationSectionTitle: data.educationSectionTitle || defaultProfile.sections.educationSectionTitle,
+                methodologySectionNumber: data.methodologySectionNumber || defaultProfile.sections.methodologySectionNumber,
+                methodologySectionTitle: data.methodologySectionTitle || defaultProfile.sections.methodologySectionTitle,
+                methodologyDescription: data.methodologyDescription || defaultProfile.sections.methodologyDescription,
+                testimonialsSectionNumber: data.testimonialsSectionNumber || defaultProfile.sections.testimonialsSectionNumber,
+                testimonialsSectionTitle: data.testimonialsSectionTitle || defaultProfile.sections.testimonialsSectionTitle
             },
             brand: {
                 logoText: data.brandLogoText || defaultProfile.brand.logoText,
@@ -144,7 +161,11 @@ export async function fetchProfile() {
                 linkedinUrl: data.socialLinkedin || defaultProfile.brand.linkedinUrl,
                 twitterUrl: data.socialTwitter || "",
                 leetcodeUrl: data.socialLeetcode || "",
-                socialLinks: Array.isArray(data.socialLinks) ? data.socialLinks : []
+                socialLinks: Array.isArray(data.socialLinks) ? data.socialLinks : [],
+                copyrightText: data.brandCopyrightText || defaultProfile.brand.copyrightText,
+                preloaderTags: Array.isArray(data.preloaderTags) && data.preloaderTags.length > 0
+                    ? data.preloaderTags
+                    : defaultProfile.brand.preloaderTags
             },
             contact: {
                 subtitle: data.contactSubtitle || defaultProfile.contact.subtitle,
@@ -152,7 +173,8 @@ export async function fetchProfile() {
                 description: data.contactDescription || defaultProfile.contact.description,
                 email: data.contactEmail || defaultProfile.contact.email,
                 quoteText: data.contactQuoteText || defaultProfile.contact.quoteText,
-                quoteAuthor: data.contactQuoteAuthor || defaultProfile.contact.quoteAuthor
+                quoteAuthor: data.contactQuoteAuthor || defaultProfile.contact.quoteAuthor,
+                submitButtonText: data.contactSubmitButtonText || defaultProfile.contact.submitButtonText
             }
         };
     } catch {

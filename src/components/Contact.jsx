@@ -128,7 +128,7 @@ const Contact = () => {
                         </div>
 
                         <button type="submit" className="btn btn-primary submit-btn">
-                            Send Message
+                            {contact.submitButtonText || "Send Message"}
                         </button>
                     </motion.form>
                 </div>

@@ -4,7 +4,8 @@ import { usePortfolioData } from "../context/PortfolioDataContext";
 import "../styles/Testimonials.css";
 
 const Testimonials = () => {
-    const { testimonials } = usePortfolioData();
+    const { testimonials, profile } = usePortfolioData();
+    const sections = profile?.sections || {};
     const [ref, inView] = useInView({
         triggerOnce: true,
         threshold: 0.1,
@@ -21,8 +22,8 @@ const Testimonials = () => {
                         animate={inView ? { opacity: 1, y: 0 } : {}}
                         className="section-title"
                     >
-                        <span className="section-number">06.</span>
-                        <span>Voices of Trust</span>
+                        <span className="section-number">{sections.testimonialsSectionNumber || "06."}</span>
+                        <span>{sections.testimonialsSectionTitle || "Voices of Trust"}</span>
                     </motion.h2>
                 </div>
 

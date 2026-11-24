@@ -1,9 +1,16 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { usePortfolioData } from "../../context/PortfolioDataContext";
 import "./Preloader.css";
 
 const Preloader = ({ onComplete }) => {
+    const { profile } = usePortfolioData();
+    const brand = profile?.brand || {};
     const [counter, setCounter] = useState(0);
+
+    const tags = brand.preloaderTags && brand.preloaderTags.length > 0
+        ? brand.preloaderTags
+        : ["Design", "Code", "Experience"];
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -32,7 +39,7 @@ const Preloader = ({ onComplete }) => {
                     transition={{ duration: 0.5 }}
                     className="preloader-logo"
                 >
-                    HARIGARAN<span>.</span>
+                    {brand.logoText || "HARIGARAN"}<span>.</span>
                 </motion.div>
 
                 <div className="preloader-counter-wrapper">
@@ -45,27 +52,16 @@ const Preloader = ({ onComplete }) => {
                 </div>
 
                 <div className="preloader-tags">
-                    <motion.span
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.5 }}
-                        transition={{ delay: 0.2 }}
-                    >
-                        Design
-                    </motion.span>
-                    <motion.span
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.5 }}
-                        transition={{ delay: 0.3 }}
-                    >
-                        Code
-                    </motion.span>
-                    <motion.span
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.5 }}
-                        transition={{ delay: 0.4 }}
-                    >
-                        Experience
-                    </motion.span>
+                    {tags.map((tag, idx) => (
+                        <motion.span
+                            key={idx}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.5 }}
+                            transition={{ delay: 0.2 + (idx * 0.1) }}
+                        >
+                            {tag}
+                        </motion.span>
+                    ))}
                 </div>
             </div>
 

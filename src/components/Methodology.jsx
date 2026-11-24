@@ -5,7 +5,8 @@ import { resolveSkillIcon } from "../utils/iconResolver";
 import "../styles/Methodology.css";
 
 const Methodology = () => {
-    const { methodology } = usePortfolioData();
+    const { methodology, profile } = usePortfolioData();
+    const sections = profile?.sections || {};
     const [ref, inView] = useInView({
         triggerOnce: true,
         threshold: 0.1,
@@ -22,8 +23,8 @@ const Methodology = () => {
                         animate={inView ? { opacity: 1, y: 0 } : {}}
                         className="section-title"
                     >
-                        <span className="section-number">05.</span>
-                        <span>Development Blueprint</span>
+                        <span className="section-number">{sections.methodologySectionNumber || "05."}</span>
+                        <span>{sections.methodologySectionTitle || "Development Blueprint"}</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0 }}
@@ -31,8 +32,8 @@ const Methodology = () => {
                         transition={{ delay: 0.2 }}
                         className="methodology-desc"
                     >
-                        I don't just write code; I engineer solutions. My methodology ensures that every
-                        project is built with precision, scalability, and performance at its core.
+                        {sections.methodologyDescription ||
+                            "I don't just write code; I engineer solutions. My methodology ensures that every project is built with precision, scalability, and performance at its core."}
                     </motion.p>
                 </div>
 

@@ -5,7 +5,8 @@ import { usePortfolioData } from "../context/PortfolioDataContext";
 import "../styles/Experience.css";
 
 const Experience = () => {
-    const { experience } = usePortfolioData();
+    const { experience, profile } = usePortfolioData();
+    const sections = profile?.sections || {};
     const [ref, inView] = useInView({
         triggerOnce: true,
         threshold: 0.1,
@@ -38,7 +39,7 @@ const Experience = () => {
                     variants={containerVariants}
                 >
                     <motion.h2 variants={itemVariants} className="section-title">
-                        <span>Work Experience</span>
+                        <span>{sections.experienceSectionTitle || "Work Experience"}</span>
                     </motion.h2>
 
                     <div className="timeline">

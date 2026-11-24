@@ -6,7 +6,8 @@ import { resolveSkillIcon } from "../utils/iconResolver";
 import "../styles/Skills.css";
 
 const Skills = () => {
-    const { skills } = usePortfolioData();
+    const { skills, profile } = usePortfolioData();
+    const sections = profile?.sections || {};
     const [activeCategory, setActiveCategory] = useState("All");
     const [ref, inView] = useInView({
         triggerOnce: true,
@@ -33,8 +34,8 @@ const Skills = () => {
                         animate={inView ? { opacity: 1, y: 0 } : {}}
                         className="section-title"
                     >
-                        <span className="section-number">03.</span>
-                        <span>Tech Stack</span>
+                        <span className="section-number">{sections.skillsSectionNumber || "03."}</span>
+                        <span>{sections.skillsSectionTitle || "Tech Stack"}</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0 }}
@@ -42,8 +43,8 @@ const Skills = () => {
                         transition={{ delay: 0.2 }}
                         className="skills-desc"
                     >
-                        The technologies and tools I use to bring ideas to life.
-                        I'm always learning and expanding my horizons.
+                        {sections.skillsDescription ||
+                            "The technologies and tools I use to bring ideas to life. I'm always learning and expanding my horizons."}
                     </motion.p>
                 </div>
 

@@ -153,7 +153,8 @@ const ProjectModal = ({ project, onClose }) => {
 };
 
 const Projects = () => {
-    const { projects } = usePortfolioData();
+    const { projects, profile } = usePortfolioData();
+    const sections = profile?.sections || {};
     const [selectedProject, setSelectedProject] = useState(null);
     const [ref, inView] = useInView({
         triggerOnce: true,
@@ -171,8 +172,8 @@ const Projects = () => {
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     className="section-title projects-header"
                 >
-                    <span className="section-number">02.</span>
-                    <span>Recent Endeavors</span>
+                    <span className="section-number">{sections.projectsSectionNumber || "02."}</span>
+                    <span>{sections.projectsSectionTitle || "Recent Endeavors"}</span>
                 </motion.h2>
 
                 <div className="projects-grid">

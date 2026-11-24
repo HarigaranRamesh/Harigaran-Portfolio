@@ -1,12 +1,14 @@
-import { motion } from "framer-motion";
+import { useMemo } from "react";
+import { usePortfolioData } from "../../context/PortfolioDataContext";
+import { resolveSkillIcon } from "../../utils/iconResolver";
 import {
     SiReact, SiNextdotjs, SiNodedotjs, SiExpress, SiMongodb,
-    SiPostgresql, SiTypescript, SiJavascript, SiFramer,
+    SiPostgresql, SiTypescript, SiJavascript,
     SiTailwindcss, SiDocker, SiGit
 } from "react-icons/si";
 import "../../styles/Marquee.css";
 
-const techStack = [
+const defaultTechStack = [
     { icon: <SiReact />, name: "React" },
     { icon: <SiNextdotjs />, name: "Next.js" },
     { icon: <SiNodedotjs />, name: "Node.js" },
@@ -21,6 +23,21 @@ const techStack = [
 ];
 
 const Marquee = () => {
+    const { skills } = usePortfolioData();
+
+    const techStack = useMemo(() => {
+        if (!skills || skills.length === 0) return defaultTechStack;
+        const allItems = skills.flatMap(c => c.items || []);
+        if (allItems.length === 0) return defaultTechStack;
+        return allItems.map(item => {
+            const IconComponent = resolveSkillIcon(item.icon || item.iconName);
+            return {
+                name: item.name,
+                icon: <IconComponent />
+            };
+        });
+    }, [skills]);
+
     return (
         <div className="marquee-container">
             <div className="marquee-content">

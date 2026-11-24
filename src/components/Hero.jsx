@@ -112,7 +112,7 @@ const Hero = () => {
         transition={{ delay: 2, duration: 1 }}
         className="scroll-indicator"
       >
-        <span className="scroll-text">Explore</span>
+        <span className="scroll-text">{hero.exploreText || "Explore"}</span>
         <div className="scroll-line"></div>
       </motion.div>
     </section>

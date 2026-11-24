@@ -76,6 +76,7 @@ export default {
               'Specializing in high-performance Full Stack applications and enterprise-scale architecture. Crafting seamless digital solutions where code meets creativity.',
             heroViewWorkText: 'View Work',
             heroContactText: "Let's Talk",
+            heroExploreText: 'Explore',
             aboutSectionNumber: '01.',
             aboutSectionTitle: 'Architecting the Web',
             aboutLeadText:
@@ -84,6 +85,7 @@ export default {
               'As a Full Stack Developer based in the digital landscape, I specialize in crafting high-performance applications with modern tech stacks. My approach is rooted in clean architecture and user-centric design principles.',
             aboutBio2:
               "Currently, I'm focused on building scalable enterprise solutions and exploring the frontiers of AI-driven web experiences.",
+            aboutResumeButtonText: 'Download Resume',
             profileImageUrl: '/uploads/profile.jpg',
             resumeUrl:
               'https://drive.google.com/file/d/1KjIp8G4gvVFprX7KXir4tW6XF7xmdnZB/view?usp=share_link',
@@ -92,9 +94,26 @@ export default {
               { label: 'Projects Completed', value: '3+' },
               { label: 'Technologies', value: '12+' }
             ],
+            skillsSectionNumber: '03.',
+            skillsSectionTitle: 'Tech Stack',
+            skillsDescription:
+              "The technologies and tools I use to bring ideas to life. I'm always learning and expanding my horizons.",
+            projectsSectionNumber: '02.',
+            projectsSectionTitle: 'Recent Endeavors',
+            projectsViewDetailsText: 'View Details',
+            experienceSectionTitle: 'Work Experience',
+            educationSectionTitle: 'Education',
+            methodologySectionNumber: '05.',
+            methodologySectionTitle: 'Development Blueprint',
+            methodologyDescription:
+              "I don't just write code; I engineer solutions. My methodology ensures that every project is built with precision, scalability, and performance at its core.",
+            testimonialsSectionNumber: '06.',
+            testimonialsSectionTitle: 'Voices of Trust',
             brandLogoText: 'HARIGARAN',
             brandStatusText: 'Available for hire',
             brandCreatorName: 'Harigaran R',
+            brandCopyrightText: 'Portfolio. All rights reserved.',
+            preloaderTags: ['Design', 'Code', 'Experience'],
             socialGithub: 'https://github.com/HarigaranRamesh',
             socialLinkedin: 'https://www.linkedin.com/in/harigaran-ramesh-554887224',
             contactSubtitle: 'Get In Touch',
@@ -104,7 +123,8 @@ export default {
             contactEmail: 'harigaran925@gmail.com',
             contactQuoteText:
               'Great things are not done by impulse, but by a series of small things brought together.',
-            contactQuoteAuthor: '- Vincent van Gogh'
+            contactQuoteAuthor: '- Vincent van Gogh',
+            contactSubmitButtonText: 'Send Message'
           }
         });
         console.log('✓ Profile data seeded.');

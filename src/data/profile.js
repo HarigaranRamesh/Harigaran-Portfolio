@@ -8,7 +8,8 @@ export const defaultProfile = {
         description:
             "Specializing in high-performance Full Stack applications and enterprise-scale architecture. Crafting seamless digital solutions where code meets creativity.",
         viewWorkButtonText: "View Work",
-        contactButtonText: "Let's Talk"
+        contactButtonText: "Let's Talk",
+        exploreText: "Explore"
     },
     about: {
         sectionNumber: "01.",
@@ -22,11 +23,29 @@ export const defaultProfile = {
         profileImage: defaultProfileImg,
         resumeUrl:
             "https://drive.google.com/file/d/1KjIp8G4gvVFprX7KXir4tW6XF7xmdnZB/view?usp=share_link",
+        resumeButtonText: "Download Resume",
         stats: [
             { label: "Experience", value: "6 Months" },
             { label: "Projects Completed", value: "3+" },
             { label: "Technologies", value: "12+" },
         ]
+    },
+    sections: {
+        skillsSectionNumber: "03.",
+        skillsSectionTitle: "Tech Stack",
+        skillsDescription:
+            "The technologies and tools I use to bring ideas to life. I'm always learning and expanding my horizons.",
+        projectsSectionNumber: "02.",
+        projectsSectionTitle: "Recent Endeavors",
+        projectsViewDetailsText: "View Details",
+        experienceSectionTitle: "Work Experience",
+        educationSectionTitle: "Education",
+        methodologySectionNumber: "05.",
+        methodologySectionTitle: "Development Blueprint",
+        methodologyDescription:
+            "I don't just write code; I engineer solutions. My methodology ensures that every project is built with precision, scalability, and performance at its core.",
+        testimonialsSectionNumber: "06.",
+        testimonialsSectionTitle: "Voices of Trust"
     },
     brand: {
         logoText: "HARIGARAN",
@@ -36,7 +55,9 @@ export const defaultProfile = {
         linkedinUrl: "https://www.linkedin.com/in/harigaran-ramesh-554887224",
         twitterUrl: "",
         leetcodeUrl: "",
-        socialLinks: []
+        socialLinks: [],
+        copyrightText: "Portfolio. All rights reserved.",
+        preloaderTags: ["Design", "Code", "Experience"]
     },
     contact: {
         subtitle: "Get In Touch",
@@ -46,6 +67,7 @@ export const defaultProfile = {
         email: "harigaran925@gmail.com",
         quoteText:
             "Great things are not done by impulse, but by a series of small things brought together.",
-        quoteAuthor: "- Vincent van Gogh"
+        quoteAuthor: "- Vincent van Gogh",
+        submitButtonText: "Send Message"
     }
 };
