@@ -129,7 +129,7 @@ export async function fetchProfile() {
                 leadText: data.aboutLeadText || defaultProfile.about.leadText,
                 bioParagraph1: data.aboutBio1 || defaultProfile.about.bioParagraph1,
                 bioParagraph2: data.aboutBio2 || defaultProfile.about.bioParagraph2,
-                profileImage: getStrapiMediaUrl(data.profileImage) || defaultProfile.about.profileImage,
+                profileImage: getStrapiMediaUrl(data.profileImage) || getStrapiMediaUrl(data.profileImageUrl) || defaultProfile.about.profileImage,
                 resumeUrl: getStrapiMediaUrl(data.resumeFile) || data.resumeUrl || defaultProfile.about.resumeUrl,
                 stats: Array.isArray(data.stats) && data.stats.length > 0
                     ? data.stats
@@ -181,7 +181,7 @@ export async function fetchProjects() {
                 impact: p.impact || fallback.impact || "",
                 tech: Array.isArray(tech) && tech.length > 0 ? tech : (fallback.tech || []),
                 features: Array.isArray(features) && features.length > 0 ? features : (fallback.features || []),
-                image: getStrapiMediaUrl(p.image) || fallback.image || "https://placehold.co/600x400/1a1a1a/ffffff?text=Project",
+                image: getStrapiMediaUrl(p.image) || getStrapiMediaUrl(p.imageUrl) || fallback.image || "https://placehold.co/600x400/1a1a1a/ffffff?text=Project",
                 demo: p.demo || fallback.demo || "#",
                 github: p.github || fallback.github || "#"
             };

@@ -1,0 +1,70 @@
+{
+  "kind": "singleType",
+  "collectionName": "profiles",
+  "info": {
+    "singularName": "profile",
+    "pluralName": "profiles",
+    "displayName": "Profile",
+    "description": "Hero & About section details, resume link, and profile image"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heroGreeting": {
+      "type": "string"
+    },
+    "heroTitlePrefix": {
+      "type": "string"
+    },
+    "heroTitleHighlight": {
+      "type": "string"
+    },
+    "heroDescription": {
+      "type": "text"
+    },
+    "heroViewWorkText": {
+      "type": "string"
+    },
+    "heroContactText": {
+      "type": "string"
+    },
+    "aboutSectionNumber": {
+      "type": "string"
+    },
+    "aboutSectionTitle": {
+      "type": "string"
+    },
+    "aboutLeadText": {
+      "type": "text"
+    },
+    "aboutBio1": {
+      "type": "text"
+    },
+    "aboutBio2": {
+      "type": "text"
+    },
+    "profileImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "profileImageUrl": {
+      "type": "string"
+    },
+    "resumeFile": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["files"]
+    },
+    "resumeUrl": {
+      "type": "string"
+    },
+    "stats": {
+      "type": "json"
+    }
+  }
+}
