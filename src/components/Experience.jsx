@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { FaBriefcase, FaCalendarAlt } from "react-icons/fa";
-import { experience } from "../data/experience";
+import { usePortfolioData } from "../context/PortfolioDataContext";
 import "../styles/Experience.css";
 
 const Experience = () => {
+    const { experience } = usePortfolioData();
     const [ref, inView] = useInView({
         triggerOnce: true,
         threshold: 0.1,
@@ -25,6 +26,8 @@ const Experience = () => {
         visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
     };
 
+    const experienceList = experience || [];
+
     return (
         <section id="experience" className="section experience-section">
             <div className="container experience-container">
@@ -41,9 +44,9 @@ const Experience = () => {
                     <div className="timeline">
                         <div className="timeline-line"></div>
 
-                        {experience.map((exp, index) => (
+                        {experienceList.map((exp, index) => (
                             <motion.div
-                                key={exp.id}
+                                key={exp.id || index}
                                 variants={itemVariants}
                                 className={`timeline-item ${index % 2 === 0 ? "left" : "right"}`}
                             >
@@ -60,13 +63,15 @@ const Experience = () => {
                                         <span>{exp.duration}</span>
                                     </div>
                                     <p className="exp-desc">{exp.description}</p>
-                                    <div className="exp-tech">
-                                        {exp.tech.map((tech, i) => (
-                                            <span key={i} className="tech-tag">
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
+                                    {exp.tech && exp.tech.length > 0 && (
+                                        <div className="exp-tech-stack">
+                                            {exp.tech.map((tech, techIdx) => (
+                                                <span key={techIdx} className="exp-tech-tag">
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
                             </motion.div>
                         ))}

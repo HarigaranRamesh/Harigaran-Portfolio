@@ -2,9 +2,13 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useEffect } from "react";
 import Magnetic from "./common/Magnetic";
 import Marquee from "./common/Marquee";
+import { usePortfolioData } from "../context/PortfolioDataContext";
 import "../styles/Hero.css";
 
 const Hero = () => {
+  const { profile } = usePortfolioData();
+  const hero = profile?.hero || {};
+
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -47,7 +51,7 @@ const Hero = () => {
           transition={{ delay: 0.2 }}
           className="hero-greeting"
         >
-          Engineering the Future
+          {hero.greeting || "Engineering the Future"}
         </motion.p>
 
         <motion.h1 className="hero-title">
@@ -57,7 +61,7 @@ const Hero = () => {
             transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
             style={{ display: "block" }}
           >
-            MODERN
+            {hero.titlePrefix || "MODERN"}
           </motion.span>
           <motion.span
             initial={{ opacity: 0, scale: 0.9 }}
@@ -65,7 +69,7 @@ const Hero = () => {
             transition={{ delay: 0.6, duration: 1 }}
             className="highlight-text"
           >
-            ARCHITECT.
+            {hero.titleHighlight || "ARCHITECT."}
           </motion.span>
         </motion.h1>
 
@@ -75,9 +79,8 @@ const Hero = () => {
           transition={{ delay: 0.8 }}
           className="hero-description"
         >
-          Specializing in high-performance Full Stack applications and
-          enterprise-scale architecture. Crafting seamless digital solutions
-          where code meets creativity.
+          {hero.description ||
+            "Specializing in high-performance Full Stack applications and enterprise-scale architecture. Crafting seamless digital solutions where code meets creativity."}
         </motion.p>
 
         <motion.div
@@ -88,12 +91,12 @@ const Hero = () => {
         >
           <Magnetic>
             <a href="#work" className="btn btn-primary">
-              View Work
+              {hero.viewWorkButtonText || "View Work"}
             </a>
           </Magnetic>
           <Magnetic>
             <a href="#contact" className="btn btn-secondary">
-              Let's Talk
+              {hero.contactButtonText || "Let's Talk"}
             </a>
           </Magnetic>
         </motion.div>

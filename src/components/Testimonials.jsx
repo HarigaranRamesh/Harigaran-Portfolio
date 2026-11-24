@@ -1,33 +1,16 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { usePortfolioData } from "../context/PortfolioDataContext";
 import "../styles/Testimonials.css";
 
-const testimonials = [
-    {
-        name: "Technical Lead",
-        role: "Previous Project",
-        text: "Harigaran is an exceptional developer who consistently delivers high-quality code. His ability to solve complex architectural challenges is impressive.",
-        company: "Software Solutions"
-    },
-    {
-        name: "Senior Developer",
-        role: "Colleague",
-        text: "A proactive problem solver with a deep understanding of modern tech stacks. His attention to performance and user experience is top-notch.",
-        company: "Tech Innovations"
-    },
-    {
-        name: "Product Manager",
-        role: "Project Stakeholder",
-        text: "Clean code, timely delivery, and a great communicator. He doesn't just build features; he builds products that users love.",
-        company: "Digital Core"
-    }
-];
-
 const Testimonials = () => {
+    const { testimonials } = usePortfolioData();
     const [ref, inView] = useInView({
         triggerOnce: true,
         threshold: 0.1,
     });
+
+    const testimonialsList = testimonials || [];
 
     return (
         <section className="section testimonials-section">
@@ -44,21 +27,19 @@ const Testimonials = () => {
                 </div>
 
                 <div className="testimonials-grid">
-                    {testimonials.map((t, idx) => (
+                    {testimonialsList.map((t, idx) => (
                         <motion.div
-                            key={idx}
+                            key={t.id || idx}
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={inView ? { opacity: 1, scale: 1 } : {}}
-                            transition={{ delay: 0.2 + idx * 0.1 }}
+                            transition={{ duration: 0.5, delay: idx * 0.1 }}
                             className="testimonial-card"
                         >
-                            <div className="quote-icon">“</div>
-                            <p className="testimonial-text">{t.text}</p>
+                            <p className="testimonial-text">"{t.text}"</p>
                             <div className="testimonial-author">
-                                <div className="author-info">
-                                    <h4 className="author-name">{t.name}</h4>
-                                    <p className="author-role">{t.role} @ {t.company}</p>
-                                </div>
+                                <h4 className="testimonial-name">{t.name}</h4>
+                                <span className="testimonial-role">{t.role}</span>
+                                {t.company && <span className="testimonial-company"> @ {t.company}</span>}
                             </div>
                         </motion.div>
                     ))}

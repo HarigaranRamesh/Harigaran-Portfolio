@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { FaGraduationCap, FaCalendarAlt } from "react-icons/fa";
-import { education } from "../data/education";
+import { usePortfolioData } from "../context/PortfolioDataContext";
 import "../styles/Education.css";
 
 const Education = () => {
+    const { education } = usePortfolioData();
     const [ref, inView] = useInView({
         triggerOnce: true,
         threshold: 0.1,
@@ -25,6 +26,8 @@ const Education = () => {
         visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
     };
 
+    const educationList = education || [];
+
     return (
         <section id="education" className="section education-section">
             <div className="container education-container">
@@ -39,13 +42,11 @@ const Education = () => {
                     </motion.h2>
 
                     <div className="timeline">
-                        {/* Reusing timeline line from common CSS or scoping it here if we want independent styles. 
-                            For consistency, we'll use similar class structure. */}
                         <div className="timeline-line"></div>
 
-                        {education.map((edu, index) => (
+                        {educationList.map((edu, index) => (
                             <motion.div
-                                key={edu.id}
+                                key={edu.id || index}
                                 variants={itemVariants}
                                 className={`timeline-item ${index % 2 === 0 ? "right" : "left"}`}
                             >

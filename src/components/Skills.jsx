@@ -1,23 +1,28 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { skills } from "../data/skills";
+import { usePortfolioData } from "../context/PortfolioDataContext";
+import { resolveSkillIcon } from "../utils/iconResolver";
 import "../styles/Skills.css";
 
 const Skills = () => {
+    const { skills } = usePortfolioData();
     const [activeCategory, setActiveCategory] = useState("All");
     const [ref, inView] = useInView({
         triggerOnce: true,
         threshold: 0.1,
     });
 
-    const categories = useMemo(() => ["All", ...skills.map(s => s.category)], []);
+    const categories = useMemo(() => {
+        return ["All", ...(skills || []).map(s => s.category)];
+    }, [skills]);
 
     const filteredSkills = useMemo(() => {
+        if (!skills) return [];
         return activeCategory === "All"
             ? skills
             : skills.filter(s => s.category === activeCategory);
-    }, [activeCategory]);
+    }, [activeCategory, skills]);
 
     return (
         <section id="skills" className="section skills-section">
@@ -68,12 +73,12 @@ const Skills = () => {
                             transition={{ duration: 0.3 }}
                             className="skills-wrapper"
                         >
-                            {filteredSkills.map((category, catIndex) => (
+                            {filteredSkills.map((category) => (
                                 <div key={category.category} className="skills-category">
                                     <h3 className="skills-category-title">{category.category}</h3>
                                     <div className="skills-grid">
-                                        {category.items.map((skill, index) => {
-                                            const Icon = skill.icon;
+                                        {(category.items || []).map((skill, index) => {
+                                            const IconComponent = resolveSkillIcon(skill.icon || skill.iconName);
                                             return (
                                                 <motion.div
                                                     key={skill.name}
@@ -93,27 +98,30 @@ const Skills = () => {
                                                             className="skill-icon-box"
                                                             style={{ color: skill.color }}
                                                         >
-                                                            <Icon className="skill-icon" />
+                                                            <IconComponent className="skill-icon" />
                                                             {/* Proficiency ring */}
                                                             <svg className="skill-level-svg" viewBox="0 0 100 100">
                                                                 <circle
                                                                     className="skill-level-bg"
-                                                                    cx="50" cy="50" r="45"
+                                                                    cx="50"
+                                                                    cy="50"
+                                                                    r="45"
                                                                 />
-                                                                <motion.circle
-                                                                    className="skill-level-progress"
-                                                                    cx="50" cy="50" r="45"
-                                                                    initial={{ pathLength: 0 }}
-                                                                    animate={{ pathLength: skill.level / 100 }}
-                                                                    transition={{ duration: 1.5, delay: 0.5 }}
-                                                                    style={{ stroke: skill.color }}
+                                                                <circle
+                                                                    className="skill-level-fill"
+                                                                    cx="50"
+                                                                    cy="50"
+                                                                    r="45"
+                                                                    style={{
+                                                                        strokeDasharray: 283,
+                                                                        strokeDashoffset: 283 - (283 * (skill.level || 75)) / 100,
+                                                                        stroke: skill.color
+                                                                    }}
                                                                 />
                                                             </svg>
                                                         </div>
-                                                        <div className="skill-info">
-                                                            <span className="skill-name">{skill.name}</span>
-                                                            <span className="skill-percentage">{skill.level}%</span>
-                                                        </div>
+                                                        <span className="skill-name">{skill.name}</span>
+                                                        <span className="skill-percentage">{skill.level || 75}%</span>
                                                     </div>
                                                 </motion.div>
                                             );

@@ -6,6 +6,7 @@ import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Preloader from "./components/common/Preloader";
+import { PortfolioDataProvider } from "./context/PortfolioDataContext";
 
 // Lazy components
 const About = lazy(() => import('./components/About'));
@@ -47,59 +48,61 @@ function App() {
   }, [loading]);
 
   return (
-    <div className="bg-bg-color min-h-screen selection:bg-accent-color selection:text-white">
-      <AnimatePresence mode="wait">
-        {loading && <Preloader onComplete={() => setLoading(false)} />}
-      </AnimatePresence>
+    <PortfolioDataProvider>
+      <div className="bg-bg-color min-h-screen selection:bg-accent-color selection:text-white">
+        <AnimatePresence mode="wait">
+          {loading && <Preloader onComplete={() => setLoading(false)} />}
+        </AnimatePresence>
 
-      <Router>
-        {!loading && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
-            <motion.div className="scroll-progress" style={{ scaleX, transformOrigin: "0%" }}>
-              <div className="scroll-progress-bar"></div>
-            </motion.div>
+        <Router>
+          {!loading && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+            >
+              <motion.div className="scroll-progress" style={{ scaleX, transformOrigin: "0%" }}>
+                <div className="scroll-progress-bar"></div>
+              </motion.div>
 
-            <Routes>
-              <Route path="/" element={
-                <>
-                  <Navbar />
-                  <Hero />
+              <Routes>
+                <Route path="/" element={
+                  <>
+                    <Navbar />
+                    <Hero />
+                    <Suspense fallback={<SectionLoading />}>
+                      <About />
+                      <Projects />
+                      <Skills />
+                      <Experience />
+                      <Education />
+                      <Methodology />
+                      <Testimonials />
+                      <Contact />
+                      <Footer />
+                      <ScrollToTop />
+                    </Suspense>
+                  </>
+                } />
+
+                <Route path="/login" element={
                   <Suspense fallback={<SectionLoading />}>
-                    <About />
-                    <Projects />
-                    <Skills />
-                    <Experience />
-                    <Education />
-                    <Methodology />
-                    <Testimonials />
-                    <Contact />
-                    <Footer />
-                    <ScrollToTop />
+                    <Login />
                   </Suspense>
-                </>
-              } />
+                } />
 
-              <Route path="/login" element={
-                <Suspense fallback={<SectionLoading />}>
-                  <Login />
-                </Suspense>
-              } />
-
-              <Route path="/admin" element={
-                <Suspense fallback={<SectionLoading />}>
-                  <Dashboard />
-                </Suspense>
-              } />
-            </Routes>
-          </motion.div>
-        )}
-      </Router>
-    </div>
-  )
+                <Route path="/admin" element={
+                  <Suspense fallback={<SectionLoading />}>
+                    <Dashboard />
+                  </Suspense>
+                } />
+              </Routes>
+            </motion.div>
+          )}
+        </Router>
+      </div>
+    </PortfolioDataProvider>
+  );
 }
 
 export default App;

@@ -1,8 +1,8 @@
-import { useState, useRef, memo, useMemo } from "react";
+import { useState, useRef, memo } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { FaGithub, FaExternalLinkAlt, FaTimes, FaCheck } from "react-icons/fa";
-import { projects } from "../data/projects";
+import { usePortfolioData } from "../context/PortfolioDataContext";
 import "../styles/Projects.css";
 
 const ProjectCard = memo(({ project, index, inView, onOpenModal }) => {
@@ -33,6 +33,8 @@ const ProjectCard = memo(({ project, index, inView, onOpenModal }) => {
         y.set(0);
     };
 
+    const techList = Array.isArray(project.tech) ? project.tech : [];
+
     return (
         <motion.div
             ref={cardRef}
@@ -56,10 +58,10 @@ const ProjectCard = memo(({ project, index, inView, onOpenModal }) => {
                 <h3 className="project-title">{project.title}</h3>
                 <p className="project-desc">{project.description}</p>
                 <div className="project-tags">
-                    {project.tech.slice(0, 3).map((t, i) => (
+                    {techList.slice(0, 3).map((t, i) => (
                         <span key={i} className="project-tag">{t}</span>
                     ))}
-                    {project.tech.length > 3 && <span className="project-tag">+{project.tech.length - 3}</span>}
+                    {techList.length > 3 && <span className="project-tag">+{techList.length - 3}</span>}
                 </div>
             </div>
         </motion.div>
@@ -68,6 +70,9 @@ const ProjectCard = memo(({ project, index, inView, onOpenModal }) => {
 
 const ProjectModal = ({ project, onClose }) => {
     if (!project) return null;
+
+    const techList = Array.isArray(project.tech) ? project.tech : [];
+    const featuresList = Array.isArray(project.features) ? project.features : [];
 
     return (
         <motion.div
@@ -90,42 +95,56 @@ const ProjectModal = ({ project, onClose }) => {
                     <div className="modal-image">
                         <img src={project.image} alt={project.title} />
                         <div className="modal-links">
-                            <a href={project.github} target="_blank" rel="noreferrer" className="modal-link-btn">
-                                <FaGithub /> GitHub
-                            </a>
-                            <a href={project.demo} target="_blank" rel="noreferrer" className="modal-link-btn primary">
-                                <FaExternalLinkAlt /> Live Demo
-                            </a>
+                            {project.github && project.github !== "#" && (
+                                <a href={project.github} target="_blank" rel="noreferrer" className="modal-link-btn">
+                                    <FaGithub /> GitHub
+                                </a>
+                            )}
+                            {project.demo && project.demo !== "#" && (
+                                <a href={project.demo} target="_blank" rel="noreferrer" className="modal-link-btn primary">
+                                    <FaExternalLinkAlt /> Live Demo
+                                </a>
+                            )}
                         </div>
                     </div>
 
                     <div className="modal-info">
                         <h2 className="modal-title">{project.title}</h2>
-                        <div className="modal-section">
-                            <h4>The Challenge</h4>
-                            <p>{project.challenge}</p>
-                        </div>
-                        <div className="modal-section">
-                            <h4>The Solution</h4>
-                            <p>{project.solution}</p>
-                        </div>
-                        <div className="modal-section impact">
-                            <h4>Impact & Outcome</h4>
-                            <p>{project.impact}</p>
-                        </div>
-                        <div className="modal-section">
-                            <h4>Key Features</h4>
-                            <ul className="modal-features">
-                                {project.features.map((feature, i) => (
-                                    <li key={i}><FaCheck className="check-icon" /> {feature}</li>
+                        {project.challenge && (
+                            <div className="modal-section">
+                                <h4>The Challenge</h4>
+                                <p>{project.challenge}</p>
+                            </div>
+                        )}
+                        {project.solution && (
+                            <div className="modal-section">
+                                <h4>The Solution</h4>
+                                <p>{project.solution}</p>
+                            </div>
+                        )}
+                        {project.impact && (
+                            <div className="modal-section impact">
+                                <h4>Impact & Outcome</h4>
+                                <p>{project.impact}</p>
+                            </div>
+                        )}
+                        {featuresList.length > 0 && (
+                            <div className="modal-section">
+                                <h4>Key Features</h4>
+                                <ul className="modal-features">
+                                    {featuresList.map((feature, i) => (
+                                        <li key={i}><FaCheck className="check-icon" /> {feature}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                        {techList.length > 0 && (
+                            <div className="modal-tech-stack">
+                                {techList.map((t, i) => (
+                                    <span key={i} className="tech-badge">{t}</span>
                                 ))}
-                            </ul>
-                        </div>
-                        <div className="modal-tech-stack">
-                            {project.tech.map((t, i) => (
-                                <span key={i} className="tech-badge">{t}</span>
-                            ))}
-                        </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </motion.div>
@@ -134,11 +153,14 @@ const ProjectModal = ({ project, onClose }) => {
 };
 
 const Projects = () => {
+    const { projects } = usePortfolioData();
     const [selectedProject, setSelectedProject] = useState(null);
     const [ref, inView] = useInView({
         triggerOnce: true,
         threshold: 0.1,
     });
+
+    const projectList = projects || [];
 
     return (
         <section id="work" className="section">
@@ -154,9 +176,9 @@ const Projects = () => {
                 </motion.h2>
 
                 <div className="projects-grid">
-                    {projects.map((project, index) => (
+                    {projectList.map((project, index) => (
                         <ProjectCard
-                            key={project.id}
+                            key={project.id || index}
                             project={project}
                             index={index}
                             inView={inView}

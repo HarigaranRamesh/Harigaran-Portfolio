@@ -2,10 +2,14 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Magnetic from "./common/Magnetic";
+import { usePortfolioData } from "../context/PortfolioDataContext";
+import defaultProfileImg from "../assets/profile.jpg";
 import "../styles/About.css";
-import profileImg from "../assets/profile.jpg";
 
 const About = () => {
+    const { profile } = usePortfolioData();
+    const about = profile?.about || {};
+
     const containerRef = useRef(null);
     const [inViewRef, inView] = useInView({
         triggerOnce: true,
@@ -22,11 +26,14 @@ const About = () => {
     const y2 = useTransform(scrollYProgress, [0, 1], [0, 100]);
     const rotate = useTransform(scrollYProgress, [0, 1], [0, 45]);
 
-    const stats = [
+    const stats = about.stats && about.stats.length > 0 ? about.stats : [
         { label: "Experience", value: "6 Months" },
         { label: "Projects Completed", value: "3+" },
         { label: "Technologies", value: "12+" },
     ];
+
+    const profileImageSrc = about.profileImage || defaultProfileImg;
+    const resumeDownloadUrl = about.resumeUrl || "https://drive.google.com/file/d/1KjIp8G4gvVFprX7KXir4tW6XF7xmdnZB/view?usp=share_link";
 
     return (
         <section id="about" className="section about-section" ref={containerRef}>
@@ -41,7 +48,7 @@ const About = () => {
                     >
                         <div className="about-img-container">
                             <img
-                                src={profileImg}
+                                src={profileImageSrc}
                                 alt="Profile"
                                 className="about-img"
                             />
@@ -62,24 +69,26 @@ const About = () => {
                             transition={{ duration: 0.8 }}
                         >
                             <h2 className="section-title">
-                                <span className="section-number">01.</span>
-                                <span>Architecting the Web</span>
+                                <span className="section-number">{about.sectionNumber || "01."}</span>
+                                <span>{about.sectionTitle || "Architecting the Web"}</span>
                             </h2>
 
                             <div className="about-text">
                                 <p className="lead-text">
-                                    I transform complex problems into elegant digital solutions
-                                    that live at the intersection of <span className="highlight">performance</span> and <span className="highlight">design</span>.
+                                    {about.leadText || (
+                                        <>
+                                            I transform complex problems into elegant digital solutions
+                                            that live at the intersection of <span className="highlight">performance</span> and <span className="highlight">design</span>.
+                                        </>
+                                    )}
                                 </p>
                                 <p>
-                                    As a Full Stack Developer based in the digital landscape,
-                                    I specialize in crafting high-performance applications with
-                                    modern tech stacks. My approach is rooted in clean architecture
-                                    and user-centric design principles.
+                                    {about.bioParagraph1 ||
+                                        "As a Full Stack Developer based in the digital landscape, I specialize in crafting high-performance applications with modern tech stacks. My approach is rooted in clean architecture and user-centric design principles."}
                                 </p>
                                 <p>
-                                    Currently, I'm focused on building scalable enterprise solutions
-                                    and exploring the frontiers of AI-driven web experiences.
+                                    {about.bioParagraph2 ||
+                                        "Currently, I'm focused on building scalable enterprise solutions and exploring the frontiers of AI-driven web experiences."}
                                 </p>
                             </div>
 
@@ -101,7 +110,7 @@ const About = () => {
                             <div className="about-btn-wrapper">
                                 <Magnetic>
                                     <a
-                                        href="https://drive.google.com/file/d/1KjIp8G4gvVFprX7KXir4tW6XF7xmdnZB/view?usp=share_link"
+                                        href={resumeDownloadUrl}
                                         target="_blank"
                                         rel="noreferrer"
                                         className="btn-outline modern-btn"
